@@ -1,7 +1,10 @@
 import logoLoc from './logo.png'
 import addElement from './domManip.js';
 import { putButtonInLocalStorage } from './domManip.js';
-import plusloc from './plus-thick-2.png'
+import plusloc from './plus-thick-2.png';
+import { populateProjects } from './domManip.js';
+import { resetProjects } from './domManip.js'
+
 let backEndSideBarButtonsArray= [];
 let divToReturn = addElement('div', 'mainHomeDiv');
 let headerDiv= addElement('div', 'headerDiv', divToReturn);
@@ -9,11 +12,10 @@ let sideBarDiv= addElement('div', 'sidebarDiv', divToReturn);
 let logo= addElement('img', 'mainLogo', headerDiv, logoLoc);
 let listsHeaderDiv= addElement('div', 'listsHeaderDiv', sideBarDiv)
 let buttonList = addElement('div', 'button-list', sideBarDiv);
-// let sideBarButtonsArray= [];
-// localStorage.setItem("sideBarButtonsArray",JSON.stringify(sideBarButtonsArray));
+//let sideBarButtonsArray= [];
+//localStorage.setItem("sideBarButtonsArray",JSON.stringify(sideBarButtonsArray));
 // localStorage.setItem('sideBarButtonsId',0);
-console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
-let allButton= addElement('button', 'buttonsInList', buttonList, undefined, 0, "All");
+//console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
 let addButtonDiv= addElement('div', 'addButtonDiv', sideBarDiv)
 let addButton= addElement('img', 'addButton', addButtonDiv, plusloc);
 let listsHeader = addElement('p', 'listsHeader', listsHeaderDiv);
@@ -21,6 +23,8 @@ listsHeader.innerHTML= "Lists";
 
 
 export default function addHomeDOM(){
+    //resetProjects();
+    populateProjects(buttonList);
     return divToReturn;
 }
 function showAddingProjectButton(){

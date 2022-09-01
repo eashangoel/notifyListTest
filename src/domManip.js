@@ -35,3 +35,22 @@ export function putButtonInLocalStorage(name){
     console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
     return nextButton;
 }
+
+export function populateProjects(buttonList){
+    let a= JSON.parse(localStorage.getItem("sideBarButtonsArray"));
+    a.forEach(element => {
+        console.log(element.projectID);
+        let newButton = addElement('button', 'buttonsInList', buttonList, undefined, element.projectID, element.projectName);
+    });
+}
+
+export function resetProjects(){
+    let sideBarButtonsArray= [];
+    localStorage.setItem("sideBarButtonsArray",JSON.stringify(sideBarButtonsArray));
+    localStorage.setItem('sideBarButtonsId',0);
+    let a = JSON.parse(localStorage.getItem("sideBarButtonsArray"));
+    let nextButton = new newButton("All", 0)
+    a[0]= nextButton;
+    localStorage.setItem("sideBarButtonsArray",JSON.stringify(a));
+    console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
+}
