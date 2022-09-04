@@ -1,3 +1,7 @@
+import checkLoc from './check-bold-2.png'
+import blankcircleloc from './checkbox-blank-circle-outline.png'
+
+let activeProject =0;
 class newButton{
     constructor(projectName, projectID){
         this.projectName= projectName;
@@ -39,8 +43,10 @@ export function putButtonInLocalStorage(name){
 export function populateProjects(buttonList){
     let a= JSON.parse(localStorage.getItem("sideBarButtonsArray"));
     a.forEach(element => {
-        console.log(element.projectID);
         let newButton = addElement('button', 'buttonsInList', buttonList, undefined, element.projectID, element.projectName);
+        newButton.addEventListener("click", function updateActiveProj(){
+            activeProject= element.projectID;
+        })
     });
 }
 
@@ -54,3 +60,59 @@ export function resetProjects(){
     localStorage.setItem("sideBarButtonsArray",JSON.stringify(a));
     console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
 }
+
+export function circleCheck(funcnewTask, functask, funcnewTaskCheckImage){
+    let task = functask;
+    let newTask= funcnewTask;
+    let newTaskCheckImage= funcnewTaskCheckImage;
+    newTask.addEventListener("mouseover", function changeIcon(){
+        newTaskCheckImage.src= checkLoc;
+        newTaskCheckImage.classList.add("rotateme");
+    })
+    newTask.addEventListener("mouseleave", function changeIcon(){
+        newTaskCheckImage.src= blankcircleloc;
+        newTaskCheckImage.classList.remove("rotateme");
+        newTask.style.height= "10%";
+    })  
+    newTask.addEventListener("click", function logMeeee(){
+        console.log("Im the task project "+ task.taskProject);
+        newTask.style.height= "8rem";
+        
+    })
+}
+
+export function decideTaskBG(newTask, task){
+    switch(task.taskPriority){
+        case 'high': newTask.style.border= "1.5px solid #ff6961"; newTask.style.backgroundColor= "#ffdbd9"; break;
+        case 'medium': newTask.style.border= "1.5px solid #c4bc00"; newTask.style.backgroundColor= "#fffdcd"; break;
+        case 'low': newTask.style.border= "1.5px solid #77DD77"; newTask.style.backgroundColor= "#def7de"; break;
+        default : break;
+    }
+}
+
+export function addTaskUiEles(funcnewTask, functask){
+    let task = functask;
+    let newTask= funcnewTask;
+    let taskNameLabel= addElement('p', 'taskNameLabel', newTask, undefined, undefined, task.taskName);
+    let taskDateLabel= addElement('p', 'taskDateLabel', newTask, undefined, undefined, task.taskDate);
+}
+
+export function validateMe(functask, funcNameInput, funcDateInput){
+    let task = functask;
+    let nameInput= funcNameInput;
+    let dateInput= funcDateInput;
+    if (task.taskName == ""){
+        nameInput.classList.add("shakeme");
+        return false;
+    }
+    if (task.taskDate == ""){
+        dateInput.classList.add("shakeme");
+        return false;
+    }
+    if(task.taskPriority == ""){
+        return false;
+    }
+    return true;
+}
+
+export {activeProject};

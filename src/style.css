@@ -13,6 +13,24 @@
       transform: rotate(360deg);
     }
   }
+@keyframes spin { 
+    100% { 
+      transform: rotateZ(360deg);
+    }
+  }
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
 :root {
     --orange: #E27D60;
     --cyan: rgb(131, 205, 203); 
@@ -74,7 +92,7 @@
 }
 .buttonsInList:hover{
     background-color: var(--purple);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 .addButtonDiv{
     display: flex;
@@ -87,4 +105,216 @@
 .addButton:hover{
     animation-name: rotate;
     animation-duration: 0.5s;
+}
+.projectAdder{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    height: 1.3rem;
+}
+.addingProjectInput{
+    border: none;
+    margin-right: 5%;
+    height: 100%;
+}
+/* .addingProjectInput:hover{
+    animation: shake 0.5s; 
+    animation-iteration-count: infinite; 
+} */
+.addingProjectInput:focus{
+    outline: none;
+    border: 2px solid var(--seablue)
+}
+.addingProjectButton{
+   border:none;
+   width: 4em;
+   margin-inline: auto;
+}
+.addingProjectButton:last-of-type:hover{
+    background-color: #ff6961;
+    animation: shake 0.5s; 
+    animation-iteration-count: 1; 
+}
+.addingProjectButton:first-of-type:hover{
+    background-color: #77DD77;
+    /* animation: shake 0.5s; 
+    animation-iteration-count: 1;  */
+}
+/* home styling */
+
+/* tasks styling */
+.tasksDiv{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    margin-top: 1%;
+}
+.tasksMenuBar{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.removeProjectButton{
+    width: 3rem;
+    height: auto;
+}
+.removeProjectButton:hover{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+    width: 3.5rem;
+    height: auto;
+}
+.removeProjectButton:active{
+    animation: shake 0.5s;
+}
+.addTaskButton{
+    width: 90%;
+    height: 80%;
+    border: none;
+    border-radius: 25px;
+    background-color: #e0f4f1;
+    border: 1px solid var(--seablue);
+    font-size: 1rem;
+    color: black;
+}
+.addTaskButton:hover{
+    background-color: #e7d1d8;
+    border: 3px solid var(--purple);
+}
+.tasksArea{
+    margin: 3%;
+    height: 85%;
+    /* border: 2px solid blue; */
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+.newTask{
+    border-radius: 40px;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.newTaskCheckImage{
+    height: 50%;
+    width: auto;
+    margin-left: 1%;
+}
+.newTaskForm{
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    margin-top: 11%;
+    margin-left: 22%;
+    border: 2px solid var(--purple);
+    border-radius: 15px;
+    background-color: #f0e2e7;
+    visibility: hidden;
+}
+.formCloseButton{
+    height: auto;
+    width: 5%;
+    margin-left: 94%;
+    margin-top: 1%;
+}
+.formCloseButton:hover{
+    filter: invert(25%) sepia(84%) saturate(7492%) hue-rotate(18deg) brightness(100%) contrast(105%);
+}
+.disable-div{
+    pointer-events: none;
+}
+.enable-div{
+    pointer-events: all;
+}
+/* .showing-form{
+    filter: blur(2px);
+} */
+.formElements{
+   width: 65%;
+   height: fit-content;
+   margin-inline: auto;
+   display: grid;
+   column-gap: 2rem;
+   row-gap: 1rem;
+   grid-template-rows: 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   align-items: center;
+}
+.formLabel{
+    font-size: 1.2rem;
+}
+.formInput{
+    height: 1rem;
+}
+#id1{
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+#id2{
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+#id3{
+    grid-row: 3/4;
+    grid-column: 1/2;
+}
+#id4{
+    grid-row: 4/5;
+    grid-column: 1/2;
+}
+#name{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+#date{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+#priority{
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+#desc{
+    grid-row: 4/6;
+    grid-column: 2/3;
+    height: 100%;
+    resize: none;
+}
+.createTaskButton{
+    height: 1.5rem;
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 5%;
+    background-color: #a7dfd7;
+    border: none;
+    border-radius: 30px;
+}
+.createTaskButton:hover{
+    color: white;
+    background-color: var(--purple);
+}
+.rotateme{
+    animation-name: rotate;
+    animation-delay: 300ms;
+    animation-duration: 0.5s;
+    filter: invert(67%) sepia(18%) saturate(1224%) hue-rotate(122deg) brightness(88%) contrast(86%);
+}
+.shakeme{
+    animation-name: shake;
+    animation-duration: 0.5s;
+    border: 2px solid red;
+}
+.taskNameLabel{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.taskDateLabel{
+    margin-right: 3%;
+    color: black;
+    font-weight: 100;
+    opacity: 0.6;
+    z-index: 1;
 }

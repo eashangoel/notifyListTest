@@ -4,7 +4,9 @@ import { putButtonInLocalStorage } from './domManip.js';
 import plusloc from './plus-thick-2.png';
 import { populateProjects } from './domManip.js';
 import { resetProjects } from './domManip.js'
+import populateTasks from './tasks.js'
 
+let activeProject=0;
 let backEndSideBarButtonsArray= [];
 let divToReturn = addElement('div', 'mainHomeDiv');
 let headerDiv= addElement('div', 'headerDiv', divToReturn);
@@ -24,7 +26,8 @@ listsHeader.innerHTML= "Lists";
 
 export default function addHomeDOM(){
     //resetProjects();
-    populateProjects(buttonList);
+    activeProject= populateProjects(buttonList);
+    populateTasks(divToReturn);
     return divToReturn;
 }
 function showAddingProjectButton(){
@@ -46,7 +49,11 @@ function showAddingProjectButton(){
         backEndSideBarButtonsArray.push(buttonObject);
         let newButton = addElement('button', 'buttonsInList', buttonList, undefined, buttonObject.projectID, newInput.value);
         console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
-        addingDiv.remove();}
+        addingDiv.remove();
+        newButton.addEventListener("click", function updateActiveProj(){
+            activeProject = buttonObject.projectID;
+        })
+        }
     })
 }
 
@@ -60,4 +67,6 @@ addButton.addEventListener('click', function addButtonToList(){
     showAddingProjectButton();
     }
 })
+
+
 
