@@ -1,33 +1,51 @@
 import logoLoc from './logo.png'
-import addElement from './domManip.js';
+import menuLoc from './menu.png'
+import addElement, { resetTasks } from './domManip.js';
 import { putButtonInLocalStorage } from './domManip.js';
 import plusloc from './plus-thick-2.png';
 import { populateProjects } from './domManip.js';
 import { resetProjects } from './domManip.js'
 import populateTasks from './tasks.js'
+import { populateProject}  from './domManip.js'
+import { showRelevantTasks } from './tasks.js'
 
-let activeProject=0;
 let backEndSideBarButtonsArray= [];
 let divToReturn = addElement('div', 'mainHomeDiv');
 let headerDiv= addElement('div', 'headerDiv', divToReturn);
 let sideBarDiv= addElement('div', 'sidebarDiv', divToReturn);
 let logo= addElement('img', 'mainLogo', headerDiv, logoLoc);
 let listsHeaderDiv= addElement('div', 'listsHeaderDiv', sideBarDiv)
-let buttonList = addElement('div', 'button-list', sideBarDiv);
+let buttonList = addElement('div', 'button-list', sideBarDiv, undefined, 'buttonList');
 //let sideBarButtonsArray= [];
 //localStorage.setItem("sideBarButtonsArray",JSON.stringify(sideBarButtonsArray));
 // localStorage.setItem('sideBarButtonsId',0);
 //console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
-let addButtonDiv= addElement('div', 'addButtonDiv', sideBarDiv)
+let addButtonDiv= addElement('div', 'addButtonDiv', sideBarDiv);
+//temporary!!!!
+let refreshTasks = addElement('button', 'refreshtasks', sideBarDiv, undefined, undefined, "reset tasks")
+let refreshProjects = addElement('button', 'refreshprojects', sideBarDiv, undefined, undefined, "reset proj")
+// temporary!!!!
 let addButton= addElement('img', 'addButton', addButtonDiv, plusloc);
 let listsHeader = addElement('p', 'listsHeader', listsHeaderDiv);
 listsHeader.innerHTML= "Lists";
 
-
+function showHamburgerMenu(){
+    let hamburger= addElement('img', 'hamburgerMenu', headerDiv, menuLoc);
+    hamburger.addEventListener('click', ()=>{
+        console.log('hi');
+    })
+}
+refreshTasks.addEventListener("click", ()=>{
+    resetTasks();
+})
+refreshProjects.addEventListener("click", ()=>{
+    resetProjects();
+})
 export default function addHomeDOM(){
-    //resetProjects();
-    activeProject= populateProjects(buttonList);
+    populateProjects(buttonList);
     populateTasks(divToReturn);
+    showRelevantTasks(0);
+    showHamburgerMenu();
     return divToReturn;
 }
 function showAddingProjectButton(){
@@ -47,14 +65,13 @@ function showAddingProjectButton(){
         else{
         let buttonObject = putButtonInLocalStorage(newInput.value);
         backEndSideBarButtonsArray.push(buttonObject);
-        let newButton = addElement('button', 'buttonsInList', buttonList, undefined, buttonObject.projectID, newInput.value);
+        //let newButton = addElement('button', 'buttonsInList', buttonList, undefined, buttonObject.projectID, newInput.value);
         console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
         addingDiv.remove();
-        newButton.addEventListener("click", function updateActiveProj(){
-            activeProject = buttonObject.projectID;
-        })
+        populateProject(buttonList, buttonObject);
         }
-    })
+        }
+    )
 }
 
 addButton.addEventListener('click', function addButtonToList(){

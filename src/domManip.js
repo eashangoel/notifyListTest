@@ -1,5 +1,8 @@
 import checkLoc from './check-bold-2.png'
 import blankcircleloc from './checkbox-blank-circle-outline.png'
+import minusLoc from './minus-circle.png'
+import { updateDashboardLabel } from './tasks.js'
+import { showRelevantTasks } from './tasks.js'
 
 let activeProject =0;
 class newButton{
@@ -43,12 +46,27 @@ export function putButtonInLocalStorage(name){
 export function populateProjects(buttonList){
     let a= JSON.parse(localStorage.getItem("sideBarButtonsArray"));
     a.forEach(element => {
+        if (element.projectID==0){
+            updateDashboardLabel(element);
+        }
         let newButton = addElement('button', 'buttonsInList', buttonList, undefined, element.projectID, element.projectName);
         newButton.addEventListener("click", function updateActiveProj(){
             activeProject= element.projectID;
+            updateDashboardLabel(element);
+            showRelevantTasks(activeProject);
         })
     });
+    console.log(buttonList.lastChild.id);
 }
+export function populateProject(buttonList, buttonObject){
+    let newButton = addElement('button', 'buttonsInList', buttonList, undefined, buttonObject.projectID, buttonObject.projectName);
+    newButton.addEventListener("click", function updateActiveProj(){
+            activeProject= buttonObject.projectID;
+            updateDashboardLabel(newButton);
+            showRelevantTasks(activeProject);
+    })
+    };
+
 
 export function resetProjects(){
     let sideBarButtonsArray= [];
@@ -61,23 +79,75 @@ export function resetProjects(){
     console.log(JSON.parse(localStorage.getItem("sideBarButtonsArray")));
 }
 
+export function resetTasks(){
+    let tasksLocalArray= [];
+    localStorage.setItem("tasksLocalArray",JSON.stringify(tasksLocalArray));
+    localStorage.setItem('taskLocalId',0);
+}
+
 export function circleCheck(funcnewTask, functask, funcnewTaskCheckImage){
     let task = functask;
+    let status= "unchecked";
     let newTask= funcnewTask;
     let newTaskCheckImage= funcnewTaskCheckImage;
-    newTask.addEventListener("mouseover", function changeIcon(){
+    let minusButtonDiv= addElement('div', 'minusButtonDiv', undefined);
+    let minusButton = addElement('img', 'minusButton', minusButtonDiv, minusLoc);
+    let descP= addElement('p', 'descP', undefined, undefined, undefined, task.taskDesc);  
+    newTaskCheckImage.addEventListener("mouseover", function changeIcon(){
         newTaskCheckImage.src= checkLoc;
         newTaskCheckImage.classList.add("rotateme");
     })
-    newTask.addEventListener("mouseleave", function changeIcon(){
+    newTaskCheckImage.addEventListener("mouseleave", function changeIcon(){
+        if (status=="unchecked"){
         newTaskCheckImage.src= blankcircleloc;
-        newTaskCheckImage.classList.remove("rotateme");
+        newTaskCheckImage.classList.remove("rotateme");}
+    })    
+    newTask.addEventListener("mouseleave", function changeIcon(){
+        minusButton.classList.remove("rotateme");
         newTask.style.height= "10%";
-    })  
+        if (newTask.classList.contains("grid")){
+        newTask.removeChild(minusButtonDiv);
+        newTask.removeChild(descP);
+        newTaskCheckImage.classList.remove("grid");}
+        newTask.classList.remove("grid");
+    }) 
     newTask.addEventListener("click", function logMeeee(){
-        console.log("Im the task project "+ task.taskProject);
+        console.log("Im the task project "+ task.taskID);
         newTask.style.height= "8rem";
-        
+        newTask.appendChild(minusButtonDiv);
+        newTask.classList.add("grid");
+        if (descP.textContent==""){
+            descP.textContent="No description";
+        }
+        newTask.appendChild(descP);
+        newTaskCheckImage.classList.add("grid");
+        minusButton.classList.add("rotateme");
+    })
+    newTaskCheckImage.addEventListener("click", ()=>{
+        newTask.classList.add("ivebeenchecked");
+        newTask.style.border= "1.5px solid gray";
+        newTask.style.color= "gray";
+        status= "checked";
+        newTaskCheckImage.src= checkLoc;
+        let a= JSON.parse(localStorage.getItem("tasksLocalArray"));
+        for (let i=0; i<a.length; i++){
+            if(a[i].taskID ==task.taskID){
+                a[i].taskPriority= "verylow";
+            }
+        }
+        localStorage.setItem("tasksLocalArray",JSON.stringify(a));
+        showRelevantTasks(activeProject);
+    })
+    minusButton.addEventListener("click", ()=>{
+        let a= JSON.parse(localStorage.getItem("tasksLocalArray"));
+        for (let i=0; i<a.length; i++){
+            if(a[i].taskID ==task.taskID){
+                a.splice(i, 1);
+            }
+        }
+        console.log(a);
+        localStorage.setItem("tasksLocalArray",JSON.stringify(a));
+        showRelevantTasks(activeProject);
     })
 }
 

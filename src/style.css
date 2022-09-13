@@ -5,6 +5,11 @@
     /* border: 1px solid red; */
     font-family: 'Fira Sans Condensed', sans-serif;
 }
+@keyframes makeItfadeIn {
+    100% {
+      background-position: left;
+    }
+  }
 @keyframes rotate {
     0% {
       transform: rotate(0);
@@ -52,7 +57,6 @@
     grid-column: 1/3;
     background-color: var(--purple);
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 .sidebarDiv{
@@ -64,6 +68,8 @@
 .mainLogo{
     height: auto;
     width: 15%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .listsHeaderDiv{
     display: flex;
@@ -183,7 +189,7 @@
 }
 .tasksArea{
     margin: 3%;
-    height: 85%;
+    height: 80%;
     /* border: 2px solid blue; */
     overflow: scroll;
     display: flex;
@@ -197,11 +203,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 10px solid black;
 }
 .newTaskCheckImage{
     height: 50%;
     width: auto;
     margin-left: 1%;
+    grid-column: 1/2;
+    grid-row: 2/3;
 }
 .newTaskForm{
     position: absolute;
@@ -296,11 +305,15 @@
     color: white;
     background-color: var(--purple);
 }
-.rotateme{
+.newTaskCheckImage.rotateme{
     animation-name: rotate;
     animation-delay: 300ms;
     animation-duration: 0.5s;
     filter: invert(67%) sepia(18%) saturate(1224%) hue-rotate(122deg) brightness(88%) contrast(86%);
+}
+.rotateme{
+    animation-name: rotate;
+    animation-duration: 0.5s;
 }
 .shakeme{
     animation-name: shake;
@@ -310,6 +323,8 @@
 .taskNameLabel{
     font-size: 1.5rem;
     font-weight: 500;
+    grid-row: 1/2;
+    grid-column: 2/3;
 }
 .taskDateLabel{
     margin-right: 3%;
@@ -317,4 +332,61 @@
     font-weight: 100;
     opacity: 0.6;
     z-index: 1;
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+.hamburgerMenu{
+    filter: invert(13%) sepia(0%) saturate(1888%) hue-rotate(142deg) brightness(91%) contrast(83%);
+    position: absolute;
+    margin-left: 95%;
+}
+.hamburgerMenu:hover{
+    filter: invert(61%) sepia(38%) saturate(595%) hue-rotate(122deg) brightness(93%) contrast(88%);
+}
+.minusButtonDiv{
+    grid-column: 3/4;
+    grid-row:2/3;
+}
+.newTask.grid{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 6fr 0.5fr;
+}
+.minusButton{
+    filter: invert(13%) sepia(0%) saturate(1888%) hue-rotate(142deg) brightness(91%) contrast(83%);
+    height: 2.5rem;
+    width: auto;
+    margin-left: 20%;
+}
+.minusButton:hover{
+    filter: invert(28%) sepia(70%) saturate(3087%) hue-rotate(352deg) brightness(106%) contrast(101%);
+    animation-name: spin;
+    animation-duration: 0.5s;
+}
+.descP{
+    grid-column: 2/3;
+    color: gray;
+    font-weight: 100;
+}
+.newTaskCheckImage.grid{
+    height: 40%;
+    width: auto;
+}
+.newTaskCheckImage.grid:hover{
+    height: 50%;
+    width: auto;
+}
+.newTask.ivebeenchecked{
+    background: linear-gradient(to right, whitesmoke 50%, transparent 0);
+    background-size: 200% 100%;
+    background-position: right;
+    animation: makeItfadeIn 0.5s 0.5s forwards;
+    border-style:  none;
+}
+.dashboardP{
+    margin: 1%;
+    margin-left: 2%;
+    font-size: 2rem;
+    font-weight: 100;
+    opacity: 0.7;
 }
