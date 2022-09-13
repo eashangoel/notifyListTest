@@ -222,6 +222,7 @@
     border-radius: 15px;
     background-color: #f0e2e7;
     visibility: hidden;
+    z-index: 2;
 }
 .formCloseButton{
     height: auto;
