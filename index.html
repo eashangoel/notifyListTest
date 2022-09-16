@@ -7,3 +7,1213 @@
   <body>
   </body>
 </html>
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title>My Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer="" src="runtime.bundle.js"></script><script defer="" src="index.bundle.js"></script><script defer="" src="home.bundle.js"></script><script defer="" src="dom.bundle.js"></script><style>@import url(https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@500&display=swap);</style><style>*{
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid red; */
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+@keyframes makeItfadeIn {
+    100% {
+      background-position: left;
+    }
+  }
+@keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+@keyframes spin { 
+    100% { 
+      transform: rotateZ(360deg);
+    }
+  }
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+:root {
+    --orange: #E27D60;
+    --cyan: rgb(131, 205, 203); 
+    --yellow:#E8A87C;
+    --purple: #C38D9E;
+    --seablue:#41B3A3;
+  }
+
+/* Home styling */
+.mainHomeDiv{
+    width:100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 7fr;
+}
+.headerDiv{
+    grid-row: 1/2;
+    grid-column: 1/3;
+    background-color: var(--purple);
+    display: flex;
+    align-items: center;
+}
+.sidebarDiv{
+    grid-row: 2/3;
+    grid-column: 1/2;
+    background-color: var(--yellow);
+    box-shadow: 5px 0 5px -2px #888;
+}
+.mainLogo{
+    height: auto;
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.listsHeaderDiv{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--seablue);
+    box-shadow: 0px 2px 10px -5px #111; 
+}
+.listsHeader{
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    color: white;
+}
+.button-list{
+    margin: 1rem;
+    height: auto;
+}
+.buttonsInList{
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--yellow);
+    height: 2rem;
+    margin: 1%;
+    font-size: 1rem;
+}
+.buttonsInList:hover{
+    background-color: var(--purple);
+    font-size: 1.4rem;
+}
+.addButtonDiv{
+    display: flex;
+    justify-content: center;
+}
+.addButton{
+    height: 15%;
+    width: 15%;
+}
+.addButton:hover{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+}
+.projectAdder{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    height: 1.3rem;
+}
+.addingProjectInput{
+    border: none;
+    margin-right: 5%;
+    height: 100%;
+}
+/* .addingProjectInput:hover{
+    animation: shake 0.5s; 
+    animation-iteration-count: infinite; 
+} */
+.addingProjectInput:focus{
+    outline: none;
+    border: 2px solid var(--seablue)
+}
+.addingProjectButton{
+   border:none;
+   width: 4em;
+   margin-inline: auto;
+}
+.addingProjectButton:last-of-type:hover{
+    background-color: #ff6961;
+    animation: shake 0.5s; 
+    animation-iteration-count: 1; 
+}
+.addingProjectButton:first-of-type:hover{
+    background-color: #77DD77;
+    /* animation: shake 0.5s; 
+    animation-iteration-count: 1;  */
+}
+/* home styling */
+
+/* tasks styling */
+.tasksDiv{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    margin-top: 1%;
+}
+.tasksMenuBar{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.removeProjectButton{
+    width: 3rem;
+    height: auto;
+}
+.removeProjectButton:hover{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+    width: 3.5rem;
+    height: auto;
+}
+.removeProjectButton:active{
+    animation: shake 0.5s;
+}
+.addTaskButton{
+    width: 90%;
+    height: 80%;
+    border: none;
+    border-radius: 25px;
+    background-color: #e0f4f1;
+    border: 1px solid var(--seablue);
+    font-size: 1rem;
+    color: black;
+}
+.addTaskButton:hover{
+    background-color: #e7d1d8;
+    border: 3px solid var(--purple);
+}
+.tasksArea{
+    margin: 3%;
+    height: 80%;
+    /* border: 2px solid blue; */
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+.newTask{
+    border-radius: 40px;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 10px solid black;
+}
+.newTaskCheckImage{
+    height: 50%;
+    width: auto;
+    margin-left: 1%;
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.newTaskForm{
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    margin-top: 11%;
+    margin-left: 22%;
+    border: 2px solid var(--purple);
+    border-radius: 15px;
+    background-color: #f0e2e7;
+    visibility: hidden;
+    z-index: 2;
+}
+.formCloseButton{
+    height: auto;
+    width: 5%;
+    margin-left: 94%;
+    margin-top: 1%;
+}
+.formCloseButton:hover{
+    filter: invert(25%) sepia(84%) saturate(7492%) hue-rotate(18deg) brightness(100%) contrast(105%);
+}
+.disable-div{
+    pointer-events: none;
+}
+.enable-div{
+    pointer-events: all;
+}
+/* .showing-form{
+    filter: blur(2px);
+} */
+.formElements{
+   width: 65%;
+   height: fit-content;
+   margin-inline: auto;
+   display: grid;
+   column-gap: 2rem;
+   row-gap: 1rem;
+   grid-template-rows: 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   align-items: center;
+}
+.formLabel{
+    font-size: 1.2rem;
+}
+.formInput{
+    height: 1rem;
+}
+#id1{
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+#id2{
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+#id3{
+    grid-row: 3/4;
+    grid-column: 1/2;
+}
+#id4{
+    grid-row: 4/5;
+    grid-column: 1/2;
+}
+#name{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+#date{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+#priority{
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+#desc{
+    grid-row: 4/6;
+    grid-column: 2/3;
+    height: 100%;
+    resize: none;
+}
+.createTaskButton{
+    height: 1.5rem;
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 5%;
+    background-color: #a7dfd7;
+    border: none;
+    border-radius: 30px;
+}
+.createTaskButton:hover{
+    color: white;
+    background-color: var(--purple);
+}
+.newTaskCheckImage.rotateme{
+    animation-name: rotate;
+    animation-delay: 300ms;
+    animation-duration: 0.5s;
+    filter: invert(67%) sepia(18%) saturate(1224%) hue-rotate(122deg) brightness(88%) contrast(86%);
+}
+.rotateme{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+}
+.shakeme{
+    animation-name: shake;
+    animation-duration: 0.5s;
+    border: 2px solid red;
+}
+.taskNameLabel{
+    font-size: 1.5rem;
+    font-weight: 500;
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+.taskDateLabel{
+    margin-right: 3%;
+    color: black;
+    font-weight: 100;
+    opacity: 0.6;
+    z-index: 1;
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+.hamburgerMenu{
+    filter: invert(13%) sepia(0%) saturate(1888%) hue-rotate(142deg) brightness(91%) contrast(83%);
+    position: absolute;
+    margin-left: 95%;
+}
+.hamburgerMenu:hover{
+    filter: invert(61%) sepia(38%) saturate(595%) hue-rotate(122deg) brightness(93%) contrast(88%);
+}
+.minusButtonDiv{
+    grid-column: 3/4;
+    grid-row:2/3;
+}
+.newTask.grid{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 6fr 0.5fr;
+}
+.minusButton{
+    filter: invert(13%) sepia(0%) saturate(1888%) hue-rotate(142deg) brightness(91%) contrast(83%);
+    height: 2.5rem;
+    width: auto;
+    margin-left: 20%;
+}
+.minusButton:hover{
+    filter: invert(28%) sepia(70%) saturate(3087%) hue-rotate(352deg) brightness(106%) contrast(101%);
+    animation-name: spin;
+    animation-duration: 0.5s;
+}
+.descP{
+    grid-column: 2/3;
+    color: gray;
+    font-weight: 100;
+}
+.newTaskCheckImage.grid{
+    height: 40%;
+    width: auto;
+}
+.newTaskCheckImage.grid:hover{
+    height: 50%;
+    width: auto;
+}
+.newTask.ivebeenchecked{
+    background: linear-gradient(to right, whitesmoke 50%, transparent 0);
+    background-size: 200% 100%;
+    background-position: right;
+    animation: makeItfadeIn 0.5s 0.5s forwards;
+    border-style:  none;
+}
+.dashboardP{
+    margin: 1%;
+    margin-left: 2%;
+    font-size: 2rem;
+    font-weight: 100;
+    opacity: 0.7;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7SUFDSSxTQUFTO0lBQ1QsVUFBVTtJQUNWLDJCQUEyQjtJQUMzQiw4Q0FBOEM7QUFDbEQ7QUFDQTtJQUNJO01BQ0UseUJBQXlCO0lBQzNCO0VBQ0Y7QUFDRjtJQUNJO01BQ0Usb0JBQW9CO0lBQ3RCO0lBQ0E7TUFDRSx5QkFBeUI7SUFDM0I7RUFDRjtBQUNGO0lBQ0k7TUFDRSwwQkFBMEI7SUFDNUI7RUFDRjtBQUNGO0lBQ0ksS0FBSywyQ0FBMkMsRUFBRTtJQUNsRCxNQUFNLDhDQUE4QyxFQUFFO0lBQ3RELE1BQU0sNENBQTRDLEVBQUU7SUFDcEQsTUFBTSwyQ0FBMkMsRUFBRTtJQUNuRCxNQUFNLDRDQUE0QyxFQUFFO0lBQ3BELE1BQU0sNkNBQTZDLEVBQUU7SUFDckQsTUFBTSw0Q0FBNEMsRUFBRTtJQUNwRCxNQUFNLDRDQUE0QyxFQUFFO0lBQ3BELE1BQU0sNkNBQTZDLEVBQUU7SUFDckQsTUFBTSwyQ0FBMkMsRUFBRTtJQUNuRCxPQUFPLDZDQUE2QyxFQUFFO0VBQ3hEO0FBQ0Y7SUFDSSxpQkFBaUI7SUFDakIsMEJBQTBCO0lBQzFCLGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsaUJBQWlCO0VBQ25COztBQUVGLGlCQUFpQjtBQUNqQjtJQUNJLFVBQVU7SUFDVixhQUFhO0lBQ2IsYUFBYTtJQUNiLDhCQUE4QjtJQUM5QiwyQkFBMkI7QUFDL0I7QUFDQTtJQUNJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsK0JBQStCO0lBQy9CLGFBQWE7SUFDYixtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsK0JBQStCO0lBQy9CLCtCQUErQjtBQUNuQztBQUNBO0lBQ0ksWUFBWTtJQUNaLFVBQVU7SUFDVixpQkFBaUI7SUFDakIsa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLGFBQWE7SUFDYixnQ0FBZ0M7SUFDaEMsa0NBQWtDO0FBQ3RDO0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsbUJBQW1CO0lBQ25CLFlBQVk7QUFDaEI7QUFDQTtJQUNJLFlBQVk7SUFDWixZQUFZO0FBQ2hCO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQiwrQkFBK0I7SUFDL0IsWUFBWTtJQUNaLFVBQVU7SUFDVixlQUFlO0FBQ25CO0FBQ0E7SUFDSSwrQkFBK0I7SUFDL0IsaUJBQWlCO0FBQ3JCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsdUJBQXVCO0FBQzNCO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsVUFBVTtBQUNkO0FBQ0E7SUFDSSxzQkFBc0I7SUFDdEIsd0JBQXdCO0FBQzVCO0FBQ0E7SUFDSSxjQUFjO0lBQ2QsYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixjQUFjO0FBQ2xCO0FBQ0E7SUFDSSxZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEI7QUFDQTs7O0dBR0c7QUFDSDtJQUNJLGFBQWE7SUFDYjtBQUNKO0FBQ0E7R0FDRyxXQUFXO0dBQ1gsVUFBVTtHQUNWLG1CQUFtQjtBQUN0QjtBQUNBO0lBQ0kseUJBQXlCO0lBQ3pCLHFCQUFxQjtJQUNyQiw0QkFBNEI7QUFDaEM7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QjtvQ0FDZ0M7QUFDcEM7QUFDQSxpQkFBaUI7O0FBRWpCLGtCQUFrQjtBQUNsQjtJQUNJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsY0FBYztBQUNsQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsNkJBQTZCO0FBQ2pDO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksc0JBQXNCO0lBQ3RCLHdCQUF3QjtJQUN4QixhQUFhO0lBQ2IsWUFBWTtBQUNoQjtBQUNBO0lBQ0kscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSSxVQUFVO0lBQ1YsV0FBVztJQUNYLFlBQVk7SUFDWixtQkFBbUI7SUFDbkIseUJBQXlCO0lBQ3pCLGdDQUFnQztJQUNoQyxlQUFlO0lBQ2YsWUFBWTtBQUNoQjtBQUNBO0lBQ0kseUJBQXlCO0lBQ3pCLCtCQUErQjtBQUNuQztBQUNBO0lBQ0ksVUFBVTtJQUNWLFdBQVc7SUFDWCw0QkFBNEI7SUFDNUIsZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsZUFBZTtJQUNmLE9BQU87QUFDWDtBQUNBO0lBQ0ksbUJBQW1CO0lBQ25CLFdBQVc7SUFDWCxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLDhCQUE4QjtJQUM5Qix3QkFBd0I7QUFDNUI7QUFDQTtJQUNJLFdBQVc7SUFDWCxXQUFXO0lBQ1gsZUFBZTtJQUNmLGdCQUFnQjtJQUNoQixhQUFhO0FBQ2pCO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFVBQVU7SUFDVixlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLCtCQUErQjtJQUMvQixtQkFBbUI7SUFDbkIseUJBQXlCO0lBQ3pCLGtCQUFrQjtJQUNsQixVQUFVO0FBQ2Q7QUFDQTtJQUNJLFlBQVk7SUFDWixTQUFTO0lBQ1QsZ0JBQWdCO0lBQ2hCLGNBQWM7QUFDbEI7QUFDQTtJQUNJLGdHQUFnRztBQUNwRztBQUNBO0lBQ0ksb0JBQW9CO0FBQ3hCO0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7QUFDQTs7R0FFRztBQUNIO0dBQ0csVUFBVTtHQUNWLG1CQUFtQjtHQUNuQixtQkFBbUI7R0FDbkIsYUFBYTtHQUNiLGdCQUFnQjtHQUNoQixhQUFhO0dBQ2IsMkJBQTJCO0dBQzNCLDBDQUEwQztHQUMxQyxtQkFBbUI7QUFDdEI7QUFDQTtJQUNJLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksWUFBWTtBQUNoQjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixZQUFZO0lBQ1osWUFBWTtBQUNoQjtBQUNBO0lBQ0ksY0FBYztJQUNkLFVBQVU7SUFDVixnQkFBZ0I7SUFDaEIsY0FBYztJQUNkLHlCQUF5QjtJQUN6QixZQUFZO0lBQ1osbUJBQW1CO0FBQ3ZCO0FBQ0E7SUFDSSxZQUFZO0lBQ1osK0JBQStCO0FBQ25DO0FBQ0E7SUFDSSxzQkFBc0I7SUFDdEIsc0JBQXNCO0lBQ3RCLHdCQUF3QjtJQUN4QiwrRkFBK0Y7QUFDbkc7QUFDQTtJQUNJLHNCQUFzQjtJQUN0Qix3QkFBd0I7QUFDNUI7QUFDQTtJQUNJLHFCQUFxQjtJQUNyQix3QkFBd0I7SUFDeEIscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYixnQkFBZ0I7QUFDcEI7QUFDQTtJQUNJLGdCQUFnQjtJQUNoQixZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLFlBQVk7SUFDWixVQUFVO0lBQ1YsYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksOEZBQThGO0lBQzlGLGtCQUFrQjtJQUNsQixnQkFBZ0I7QUFDcEI7QUFDQTtJQUNJLDhGQUE4RjtBQUNsRztBQUNBO0lBQ0ksZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEI7QUFDQTtJQUNJLGFBQWE7SUFDYiwrQkFBK0I7SUFDL0Isb0NBQW9DO0FBQ3hDO0FBQ0E7SUFDSSw4RkFBOEY7SUFDOUYsY0FBYztJQUNkLFdBQVc7SUFDWCxnQkFBZ0I7QUFDcEI7QUFDQTtJQUNJLGlHQUFpRztJQUNqRyxvQkFBb0I7SUFDcEIsd0JBQXdCO0FBQzVCO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsV0FBVztJQUNYLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksV0FBVztJQUNYLFdBQVc7QUFDZjtBQUNBO0lBQ0ksV0FBVztJQUNYLFdBQVc7QUFDZjtBQUNBO0lBQ0ksb0VBQW9FO0lBQ3BFLDBCQUEwQjtJQUMxQiwwQkFBMEI7SUFDMUIsMENBQTBDO0lBQzFDLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksVUFBVTtJQUNWLGVBQWU7SUFDZixlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEIiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1GaXJhK1NhbnMrQ29uZGVuc2VkOndnaHRANTAwJmRpc3BsYXk9c3dhcCcpO1xuKntcbiAgICBtYXJnaW46IDA7XG4gICAgcGFkZGluZzogMDtcbiAgICAvKiBib3JkZXI6IDFweCBzb2xpZCByZWQ7ICovXG4gICAgZm9udC1mYW1pbHk6ICdGaXJhIFNhbnMgQ29uZGVuc2VkJywgc2Fucy1zZXJpZjtcbn1cbkBrZXlmcmFtZXMgbWFrZUl0ZmFkZUluIHtcbiAgICAxMDAlIHtcbiAgICAgIGJhY2tncm91bmQtcG9zaXRpb246IGxlZnQ7XG4gICAgfVxuICB9XG5Aa2V5ZnJhbWVzIHJvdGF0ZSB7XG4gICAgMCUge1xuICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMCk7XG4gICAgfVxuICAgIDEwMCUge1xuICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICB9XG4gIH1cbkBrZXlmcmFtZXMgc3BpbiB7IFxuICAgIDEwMCUgeyBcbiAgICAgIHRyYW5zZm9ybTogcm90YXRlWigzNjBkZWcpO1xuICAgIH1cbiAgfVxuQGtleWZyYW1lcyBzaGFrZSB7XG4gICAgMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIDFweCkgcm90YXRlKDBkZWcpOyB9XG4gICAgMTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgLTJweCkgcm90YXRlKC0xZGVnKTsgfVxuICAgIDIwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDBweCkgcm90YXRlKDFkZWcpOyB9XG4gICAgMzAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoM3B4LCAycHgpIHJvdGF0ZSgwZGVnKTsgfVxuICAgIDQwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgLTFweCkgcm90YXRlKDFkZWcpOyB9XG4gICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgMnB4KSByb3RhdGUoLTFkZWcpOyB9XG4gICAgNjAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTNweCwgMXB4KSByb3RhdGUoMGRlZyk7IH1cbiAgICA3MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgzcHgsIDFweCkgcm90YXRlKC0xZGVnKTsgfVxuICAgIDgwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIC0xcHgpIHJvdGF0ZSgxZGVnKTsgfVxuICAgIDkwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgMnB4KSByb3RhdGUoMGRlZyk7IH1cbiAgICAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAtMnB4KSByb3RhdGUoLTFkZWcpOyB9XG4gIH1cbjpyb290IHtcbiAgICAtLW9yYW5nZTogI0UyN0Q2MDtcbiAgICAtLWN5YW46IHJnYigxMzEsIDIwNSwgMjAzKTsgXG4gICAgLS15ZWxsb3c6I0U4QTg3QztcbiAgICAtLXB1cnBsZTogI0MzOEQ5RTtcbiAgICAtLXNlYWJsdWU6IzQxQjNBMztcbiAgfVxuXG4vKiBIb21lIHN0eWxpbmcgKi9cbi5tYWluSG9tZURpdntcbiAgICB3aWR0aDoxMDAlO1xuICAgIGhlaWdodDogMTAwdmg7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciA0ZnI7XG4gICAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiAxZnIgN2ZyO1xufVxuLmhlYWRlckRpdntcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAxLzM7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHVycGxlKTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uc2lkZWJhckRpdntcbiAgICBncmlkLXJvdzogMi8zO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0teWVsbG93KTtcbiAgICBib3gtc2hhZG93OiA1cHggMCA1cHggLTJweCAjODg4O1xufVxuLm1haW5Mb2dve1xuICAgIGhlaWdodDogYXV0bztcbiAgICB3aWR0aDogMTUlO1xuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICAgIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbi5saXN0c0hlYWRlckRpdntcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIHBhZGRpbmc6IDFyZW07XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tc2VhYmx1ZSk7XG4gICAgYm94LXNoYWRvdzogMHB4IDJweCAxMHB4IC01cHggIzExMTsgXG59XG4ubGlzdHNIZWFkZXJ7XG4gICAgZm9udC1zaXplOiAyLjVyZW07XG4gICAgbGV0dGVyLXNwYWNpbmc6IDJweDtcbiAgICBjb2xvcjogd2hpdGU7XG59XG4uYnV0dG9uLWxpc3R7XG4gICAgbWFyZ2luOiAxcmVtO1xuICAgIGhlaWdodDogYXV0bztcbn1cbi5idXR0b25zSW5MaXN0e1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiAxNXB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXllbGxvdyk7XG4gICAgaGVpZ2h0OiAycmVtO1xuICAgIG1hcmdpbjogMSU7XG4gICAgZm9udC1zaXplOiAxcmVtO1xufVxuLmJ1dHRvbnNJbkxpc3Q6aG92ZXJ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHVycGxlKTtcbiAgICBmb250LXNpemU6IDEuNHJlbTtcbn1cbi5hZGRCdXR0b25EaXZ7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cbi5hZGRCdXR0b257XG4gICAgaGVpZ2h0OiAxNSU7XG4gICAgd2lkdGg6IDE1JTtcbn1cbi5hZGRCdXR0b246aG92ZXJ7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4ucHJvamVjdEFkZGVye1xuICAgIG1hcmdpbi10b3A6IDIlO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgaGVpZ2h0OiAxLjNyZW07XG59XG4uYWRkaW5nUHJvamVjdElucHV0e1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBtYXJnaW4tcmlnaHQ6IDUlO1xuICAgIGhlaWdodDogMTAwJTtcbn1cbi8qIC5hZGRpbmdQcm9qZWN0SW5wdXQ6aG92ZXJ7XG4gICAgYW5pbWF0aW9uOiBzaGFrZSAwLjVzOyBcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiBpbmZpbml0ZTsgXG59ICovXG4uYWRkaW5nUHJvamVjdElucHV0OmZvY3Vze1xuICAgIG91dGxpbmU6IG5vbmU7XG4gICAgYm9yZGVyOiAycHggc29saWQgdmFyKC0tc2VhYmx1ZSlcbn1cbi5hZGRpbmdQcm9qZWN0QnV0dG9ue1xuICAgYm9yZGVyOm5vbmU7XG4gICB3aWR0aDogNGVtO1xuICAgbWFyZ2luLWlubGluZTogYXV0bztcbn1cbi5hZGRpbmdQcm9qZWN0QnV0dG9uOmxhc3Qtb2YtdHlwZTpob3ZlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmY2OTYxO1xuICAgIGFuaW1hdGlvbjogc2hha2UgMC41czsgXG4gICAgYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogMTsgXG59XG4uYWRkaW5nUHJvamVjdEJ1dHRvbjpmaXJzdC1vZi10eXBlOmhvdmVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM3N0RENzc7XG4gICAgLyogYW5pbWF0aW9uOiBzaGFrZSAwLjVzOyBcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiAxOyAgKi9cbn1cbi8qIGhvbWUgc3R5bGluZyAqL1xuXG4vKiB0YXNrcyBzdHlsaW5nICovXG4udGFza3NEaXZ7XG4gICAgZ3JpZC1yb3c6IDIvMztcbiAgICBncmlkLWNvbHVtbjogMi8zO1xuICAgIG1hcmdpbi10b3A6IDElO1xufVxuLnRhc2tzTWVudUJhcntcbiAgICBoZWlnaHQ6IDNyZW07XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xufVxuLnJlbW92ZVByb2plY3RCdXR0b257XG4gICAgd2lkdGg6IDNyZW07XG4gICAgaGVpZ2h0OiBhdXRvO1xufVxuLnJlbW92ZVByb2plY3RCdXR0b246aG92ZXJ7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG4gICAgd2lkdGg6IDMuNXJlbTtcbiAgICBoZWlnaHQ6IGF1dG87XG59XG4ucmVtb3ZlUHJvamVjdEJ1dHRvbjphY3RpdmV7XG4gICAgYW5pbWF0aW9uOiBzaGFrZSAwLjVzO1xufVxuLmFkZFRhc2tCdXR0b257XG4gICAgd2lkdGg6IDkwJTtcbiAgICBoZWlnaHQ6IDgwJTtcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgYm9yZGVyLXJhZGl1czogMjVweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTBmNGYxO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLXNlYWJsdWUpO1xuICAgIGZvbnQtc2l6ZTogMXJlbTtcbiAgICBjb2xvcjogYmxhY2s7XG59XG4uYWRkVGFza0J1dHRvbjpob3ZlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTdkMWQ4O1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIHZhcigtLXB1cnBsZSk7XG59XG4udGFza3NBcmVhe1xuICAgIG1hcmdpbjogMyU7XG4gICAgaGVpZ2h0OiA4MCU7XG4gICAgLyogYm9yZGVyOiAycHggc29saWQgYmx1ZTsgKi9cbiAgICBvdmVyZmxvdzogc2Nyb2xsO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAgZ2FwOiAyJTtcbn1cbi5uZXdUYXNre1xuICAgIGJvcmRlci1yYWRpdXM6IDQwcHg7XG4gICAgaGVpZ2h0OiAxMCU7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgICBib3JkZXI6IDEwcHggc29saWQgYmxhY2s7XG59XG4ubmV3VGFza0NoZWNrSW1hZ2V7XG4gICAgaGVpZ2h0OiA1MCU7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgbWFyZ2luLWxlZnQ6IDElO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG4gICAgZ3JpZC1yb3c6IDIvMztcbn1cbi5uZXdUYXNrRm9ybXtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgaGVpZ2h0OiAzMCU7XG4gICAgd2lkdGg6IDMwJTtcbiAgICBtYXJnaW4tdG9wOiAxMSU7XG4gICAgbWFyZ2luLWxlZnQ6IDIyJTtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB2YXIoLS1wdXJwbGUpO1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2YwZTJlNztcbiAgICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gICAgei1pbmRleDogMjtcbn1cbi5mb3JtQ2xvc2VCdXR0b257XG4gICAgaGVpZ2h0OiBhdXRvO1xuICAgIHdpZHRoOiA1JTtcbiAgICBtYXJnaW4tbGVmdDogOTQlO1xuICAgIG1hcmdpbi10b3A6IDElO1xufVxuLmZvcm1DbG9zZUJ1dHRvbjpob3ZlcntcbiAgICBmaWx0ZXI6IGludmVydCgyNSUpIHNlcGlhKDg0JSkgc2F0dXJhdGUoNzQ5MiUpIGh1ZS1yb3RhdGUoMThkZWcpIGJyaWdodG5lc3MoMTAwJSkgY29udHJhc3QoMTA1JSk7XG59XG4uZGlzYWJsZS1kaXZ7XG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XG59XG4uZW5hYmxlLWRpdntcbiAgICBwb2ludGVyLWV2ZW50czogYWxsO1xufVxuLyogLnNob3dpbmctZm9ybXtcbiAgICBmaWx0ZXI6IGJsdXIoMnB4KTtcbn0gKi9cbi5mb3JtRWxlbWVudHN7XG4gICB3aWR0aDogNjUlO1xuICAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgIG1hcmdpbi1pbmxpbmU6IGF1dG87XG4gICBkaXNwbGF5OiBncmlkO1xuICAgY29sdW1uLWdhcDogMnJlbTtcbiAgIHJvdy1nYXA6IDFyZW07XG4gICBncmlkLXRlbXBsYXRlLXJvd3M6IDFmciAxZnI7XG4gICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnIgMWZyIDFmciAxZnI7XG4gICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLmZvcm1MYWJlbHtcbiAgICBmb250LXNpemU6IDEuMnJlbTtcbn1cbi5mb3JtSW5wdXR7XG4gICAgaGVpZ2h0OiAxcmVtO1xufVxuI2lkMXtcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG59XG4jaWQye1xuICAgIGdyaWQtcm93OiAyLzM7XG4gICAgZ3JpZC1jb2x1bW46IDEvMjtcbn1cbiNpZDN7XG4gICAgZ3JpZC1yb3c6IDMvNDtcbiAgICBncmlkLWNvbHVtbjogMS8yO1xufVxuI2lkNHtcbiAgICBncmlkLXJvdzogNC81O1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG59XG4jbmFtZXtcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4jZGF0ZXtcbiAgICBncmlkLXJvdzogMi8zO1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4jcHJpb3JpdHl7XG4gICAgZ3JpZC1yb3c6IDMvNDtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xufVxuI2Rlc2N7XG4gICAgZ3JpZC1yb3c6IDQvNjtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICByZXNpemU6IG5vbmU7XG59XG4uY3JlYXRlVGFza0J1dHRvbntcbiAgICBoZWlnaHQ6IDEuNXJlbTtcbiAgICB3aWR0aDogMjAlO1xuICAgIG1hcmdpbi1sZWZ0OiA0MCU7XG4gICAgbWFyZ2luLXRvcDogNSU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2E3ZGZkNztcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgYm9yZGVyLXJhZGl1czogMzBweDtcbn1cbi5jcmVhdGVUYXNrQnV0dG9uOmhvdmVye1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wdXJwbGUpO1xufVxuLm5ld1Rhc2tDaGVja0ltYWdlLnJvdGF0ZW1le1xuICAgIGFuaW1hdGlvbi1uYW1lOiByb3RhdGU7XG4gICAgYW5pbWF0aW9uLWRlbGF5OiAzMDBtcztcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG4gICAgZmlsdGVyOiBpbnZlcnQoNjclKSBzZXBpYSgxOCUpIHNhdHVyYXRlKDEyMjQlKSBodWUtcm90YXRlKDEyMmRlZykgYnJpZ2h0bmVzcyg4OCUpIGNvbnRyYXN0KDg2JSk7XG59XG4ucm90YXRlbWV7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4uc2hha2VtZXtcbiAgICBhbmltYXRpb24tbmFtZTogc2hha2U7XG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAwLjVzO1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHJlZDtcbn1cbi50YXNrTmFtZUxhYmVse1xuICAgIGZvbnQtc2l6ZTogMS41cmVtO1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgZ3JpZC1yb3c6IDEvMjtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xufVxuLnRhc2tEYXRlTGFiZWx7XG4gICAgbWFyZ2luLXJpZ2h0OiAzJTtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgZm9udC13ZWlnaHQ6IDEwMDtcbiAgICBvcGFjaXR5OiAwLjY7XG4gICAgei1pbmRleDogMTtcbiAgICBncmlkLXJvdzogMy80O1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4uaGFtYnVyZ2VyTWVudXtcbiAgICBmaWx0ZXI6IGludmVydCgxMyUpIHNlcGlhKDAlKSBzYXR1cmF0ZSgxODg4JSkgaHVlLXJvdGF0ZSgxNDJkZWcpIGJyaWdodG5lc3MoOTElKSBjb250cmFzdCg4MyUpO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBtYXJnaW4tbGVmdDogOTUlO1xufVxuLmhhbWJ1cmdlck1lbnU6aG92ZXJ7XG4gICAgZmlsdGVyOiBpbnZlcnQoNjElKSBzZXBpYSgzOCUpIHNhdHVyYXRlKDU5NSUpIGh1ZS1yb3RhdGUoMTIyZGVnKSBicmlnaHRuZXNzKDkzJSkgY29udHJhc3QoODglKTtcbn1cbi5taW51c0J1dHRvbkRpdntcbiAgICBncmlkLWNvbHVtbjogMy80O1xuICAgIGdyaWQtcm93OjIvMztcbn1cbi5uZXdUYXNrLmdyaWR7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLXJvd3M6IDFmciAxZnIgMWZyO1xuICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyIDZmciAwLjVmcjtcbn1cbi5taW51c0J1dHRvbntcbiAgICBmaWx0ZXI6IGludmVydCgxMyUpIHNlcGlhKDAlKSBzYXR1cmF0ZSgxODg4JSkgaHVlLXJvdGF0ZSgxNDJkZWcpIGJyaWdodG5lc3MoOTElKSBjb250cmFzdCg4MyUpO1xuICAgIGhlaWdodDogMi41cmVtO1xuICAgIHdpZHRoOiBhdXRvO1xuICAgIG1hcmdpbi1sZWZ0OiAyMCU7XG59XG4ubWludXNCdXR0b246aG92ZXJ7XG4gICAgZmlsdGVyOiBpbnZlcnQoMjglKSBzZXBpYSg3MCUpIHNhdHVyYXRlKDMwODclKSBodWUtcm90YXRlKDM1MmRlZykgYnJpZ2h0bmVzcygxMDYlKSBjb250cmFzdCgxMDElKTtcbiAgICBhbmltYXRpb24tbmFtZTogc3BpbjtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4uZGVzY1B7XG4gICAgZ3JpZC1jb2x1bW46IDIvMztcbiAgICBjb2xvcjogZ3JheTtcbiAgICBmb250LXdlaWdodDogMTAwO1xufVxuLm5ld1Rhc2tDaGVja0ltYWdlLmdyaWR7XG4gICAgaGVpZ2h0OiA0MCU7XG4gICAgd2lkdGg6IGF1dG87XG59XG4ubmV3VGFza0NoZWNrSW1hZ2UuZ3JpZDpob3ZlcntcbiAgICBoZWlnaHQ6IDUwJTtcbiAgICB3aWR0aDogYXV0bztcbn1cbi5uZXdUYXNrLml2ZWJlZW5jaGVja2Vke1xuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgd2hpdGVzbW9rZSA1MCUsIHRyYW5zcGFyZW50IDApO1xuICAgIGJhY2tncm91bmQtc2l6ZTogMjAwJSAxMDAlO1xuICAgIGJhY2tncm91bmQtcG9zaXRpb246IHJpZ2h0O1xuICAgIGFuaW1hdGlvbjogbWFrZUl0ZmFkZUluIDAuNXMgMC41cyBmb3J3YXJkcztcbiAgICBib3JkZXItc3R5bGU6ICBub25lO1xufVxuLmRhc2hib2FyZFB7XG4gICAgbWFyZ2luOiAxJTtcbiAgICBtYXJnaW4tbGVmdDogMiU7XG4gICAgZm9udC1zaXplOiAycmVtO1xuICAgIGZvbnQtd2VpZ2h0OiAxMDA7XG4gICAgb3BhY2l0eTogMC43O1xufSJdLCJzb3VyY2VSb290IjoiIn0= */</style></head>
+  <body>
+  
+<div class="mainHomeDiv"><div class="headerDiv"><img class="mainLogo" src="http://localhost:8080/e4b2b7319b66350348a0.png"><img class="hamburgerMenu" src="http://localhost:8080/4fd3b62c3a29b9b30a0e.png"></div><div class="sidebarDiv"><div class="listsHeaderDiv"><p class="listsHeader">Lists</p></div><div class="button-list" id="buttonList"><button class="buttonsInList" id="0">All</button><button class="buttonsInList" id="1">grocery</button><button class="buttonsInList" id="2">oughoiug</button></div><div class="addButtonDiv"><img class="addButton" src="http://localhost:8080/0a2511f5d6d10f7226cc.png"></div><button class="refreshtasks">reset tasks</button><button class="refreshprojects">reset proj</button></div><div class="tasksDiv"><p class="dashboardP">All Dashboard</p><div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div><div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div></div></div></body></html>
+<head>
+    <meta charset="utf-8">
+    <title>My Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer="" src="runtime.bundle.js"></script><script defer="" src="index.bundle.js"></script><script defer="" src="home.bundle.js"></script><script defer="" src="dom.bundle.js"></script><style>@import url(https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@500&display=swap);</style><style>*{
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid red; */
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+@keyframes makeItfadeIn {
+    100% {
+      background-position: left;
+    }
+  }
+@keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+@keyframes spin { 
+    100% { 
+      transform: rotateZ(360deg);
+    }
+  }
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+:root {
+    --orange: #E27D60;
+    --cyan: rgb(131, 205, 203); 
+    --yellow:#E8A87C;
+    --purple: #C38D9E;
+    --seablue:#41B3A3;
+  }
+
+/* Home styling */
+.mainHomeDiv{
+    width:100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 7fr;
+}
+.headerDiv{
+    grid-row: 1/2;
+    grid-column: 1/3;
+    background-color: var(--purple);
+    display: flex;
+    align-items: center;
+}
+.sidebarDiv{
+    grid-row: 2/3;
+    grid-column: 1/2;
+    background-color: var(--yellow);
+    box-shadow: 5px 0 5px -2px #888;
+}
+.mainLogo{
+    height: auto;
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.listsHeaderDiv{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--seablue);
+    box-shadow: 0px 2px 10px -5px #111; 
+}
+.listsHeader{
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    color: white;
+}
+.button-list{
+    margin: 1rem;
+    height: auto;
+}
+.buttonsInList{
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--yellow);
+    height: 2rem;
+    margin: 1%;
+    font-size: 1rem;
+}
+.buttonsInList:hover{
+    background-color: var(--purple);
+    font-size: 1.4rem;
+}
+.addButtonDiv{
+    display: flex;
+    justify-content: center;
+}
+.addButton{
+    height: 15%;
+    width: 15%;
+}
+.addButton:hover{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+}
+.projectAdder{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    height: 1.3rem;
+}
+.addingProjectInput{
+    border: none;
+    margin-right: 5%;
+    height: 100%;
+}
+/* .addingProjectInput:hover{
+    animation: shake 0.5s; 
+    animation-iteration-count: infinite; 
+} */
+.addingProjectInput:focus{
+    outline: none;
+    border: 2px solid var(--seablue)
+}
+.addingProjectButton{
+   border:none;
+   width: 4em;
+   margin-inline: auto;
+}
+.addingProjectButton:last-of-type:hover{
+    background-color: #ff6961;
+    animation: shake 0.5s; 
+    animation-iteration-count: 1; 
+}
+.addingProjectButton:first-of-type:hover{
+    background-color: #77DD77;
+    /* animation: shake 0.5s; 
+    animation-iteration-count: 1;  */
+}
+/* home styling */
+
+/* tasks styling */
+.tasksDiv{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    margin-top: 1%;
+}
+.tasksMenuBar{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.removeProjectButton{
+    width: 3rem;
+    height: auto;
+}
+.removeProjectButton:hover{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+    width: 3.5rem;
+    height: auto;
+}
+.removeProjectButton:active{
+    animation: shake 0.5s;
+}
+.addTaskButton{
+    width: 90%;
+    height: 80%;
+    border: none;
+    border-radius: 25px;
+    background-color: #e0f4f1;
+    border: 1px solid var(--seablue);
+    font-size: 1rem;
+    color: black;
+}
+.addTaskButton:hover{
+    background-color: #e7d1d8;
+    border: 3px solid var(--purple);
+}
+.tasksArea{
+    margin: 3%;
+    height: 80%;
+    /* border: 2px solid blue; */
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+.newTask{
+    border-radius: 40px;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 10px solid black;
+}
+.newTaskCheckImage{
+    height: 50%;
+    width: auto;
+    margin-left: 1%;
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.newTaskForm{
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    margin-top: 11%;
+    margin-left: 22%;
+    border: 2px solid var(--purple);
+    border-radius: 15px;
+    background-color: #f0e2e7;
+    visibility: hidden;
+    z-index: 2;
+}
+.formCloseButton{
+    height: auto;
+    width: 5%;
+    margin-left: 94%;
+    margin-top: 1%;
+}
+.formCloseButton:hover{
+    filter: invert(25%) sepia(84%) saturate(7492%) hue-rotate(18deg) brightness(100%) contrast(105%);
+}
+.disable-div{
+    pointer-events: none;
+}
+.enable-div{
+    pointer-events: all;
+}
+/* .showing-form{
+    filter: blur(2px);
+} */
+.formElements{
+   width: 65%;
+   height: fit-content;
+   margin-inline: auto;
+   display: grid;
+   column-gap: 2rem;
+   row-gap: 1rem;
+   grid-template-rows: 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   align-items: center;
+}
+.formLabel{
+    font-size: 1.2rem;
+}
+.formInput{
+    height: 1rem;
+}
+#id1{
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+#id2{
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+#id3{
+    grid-row: 3/4;
+    grid-column: 1/2;
+}
+#id4{
+    grid-row: 4/5;
+    grid-column: 1/2;
+}
+#name{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+#date{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+#priority{
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+#desc{
+    grid-row: 4/6;
+    grid-column: 2/3;
+    height: 100%;
+    resize: none;
+}
+.createTaskButton{
+    height: 1.5rem;
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 5%;
+    background-color: #a7dfd7;
+    border: none;
+    border-radius: 30px;
+}
+.createTaskButton:hover{
+    color: white;
+    background-color: var(--purple);
+}
+.newTaskCheckImage.rotateme{
+    animation-name: rotate;
+    animation-delay: 300ms;
+    animation-duration: 0.5s;
+    filter: invert(67%) sepia(18%) saturate(1224%) hue-rotate(122deg) brightness(88%) contrast(86%);
+}
+.rotateme{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+}
+.shakeme{
+    animation-name: shake;
+    animation-duration: 0.5s;
+    border: 2px solid red;
+}
+.taskNameLabel{
+    font-size: 1.5rem;
+    font-weight: 500;
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+.taskDateLabel{
+    margin-right: 3%;
+    color: black;
+    font-weight: 100;
+    opacity: 0.6;
+    z-index: 1;
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+.hamburgerMenu{
+    filter: invert(13%) sepia(0%) saturate(1888%) hue-rotate(142deg) brightness(91%) contrast(83%);
+    position: absolute;
+    margin-left: 95%;
+}
+.hamburgerMenu:hover{
+    filter: invert(61%) sepia(38%) saturate(595%) hue-rotate(122deg) brightness(93%) contrast(88%);
+}
+.minusButtonDiv{
+    grid-column: 3/4;
+    grid-row:2/3;
+}
+.newTask.grid{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 6fr 0.5fr;
+}
+.minusButton{
+    filter: invert(13%) sepia(0%) saturate(1888%) hue-rotate(142deg) brightness(91%) contrast(83%);
+    height: 2.5rem;
+    width: auto;
+    margin-left: 20%;
+}
+.minusButton:hover{
+    filter: invert(28%) sepia(70%) saturate(3087%) hue-rotate(352deg) brightness(106%) contrast(101%);
+    animation-name: spin;
+    animation-duration: 0.5s;
+}
+.descP{
+    grid-column: 2/3;
+    color: gray;
+    font-weight: 100;
+}
+.newTaskCheckImage.grid{
+    height: 40%;
+    width: auto;
+}
+.newTaskCheckImage.grid:hover{
+    height: 50%;
+    width: auto;
+}
+.newTask.ivebeenchecked{
+    background: linear-gradient(to right, whitesmoke 50%, transparent 0);
+    background-size: 200% 100%;
+    background-position: right;
+    animation: makeItfadeIn 0.5s 0.5s forwards;
+    border-style:  none;
+}
+.dashboardP{
+    margin: 1%;
+    margin-left: 2%;
+    font-size: 2rem;
+    font-weight: 100;
+    opacity: 0.7;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7SUFDSSxTQUFTO0lBQ1QsVUFBVTtJQUNWLDJCQUEyQjtJQUMzQiw4Q0FBOEM7QUFDbEQ7QUFDQTtJQUNJO01BQ0UseUJBQXlCO0lBQzNCO0VBQ0Y7QUFDRjtJQUNJO01BQ0Usb0JBQW9CO0lBQ3RCO0lBQ0E7TUFDRSx5QkFBeUI7SUFDM0I7RUFDRjtBQUNGO0lBQ0k7TUFDRSwwQkFBMEI7SUFDNUI7RUFDRjtBQUNGO0lBQ0ksS0FBSywyQ0FBMkMsRUFBRTtJQUNsRCxNQUFNLDhDQUE4QyxFQUFFO0lBQ3RELE1BQU0sNENBQTRDLEVBQUU7SUFDcEQsTUFBTSwyQ0FBMkMsRUFBRTtJQUNuRCxNQUFNLDRDQUE0QyxFQUFFO0lBQ3BELE1BQU0sNkNBQTZDLEVBQUU7SUFDckQsTUFBTSw0Q0FBNEMsRUFBRTtJQUNwRCxNQUFNLDRDQUE0QyxFQUFFO0lBQ3BELE1BQU0sNkNBQTZDLEVBQUU7SUFDckQsTUFBTSwyQ0FBMkMsRUFBRTtJQUNuRCxPQUFPLDZDQUE2QyxFQUFFO0VBQ3hEO0FBQ0Y7SUFDSSxpQkFBaUI7SUFDakIsMEJBQTBCO0lBQzFCLGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsaUJBQWlCO0VBQ25COztBQUVGLGlCQUFpQjtBQUNqQjtJQUNJLFVBQVU7SUFDVixhQUFhO0lBQ2IsYUFBYTtJQUNiLDhCQUE4QjtJQUM5QiwyQkFBMkI7QUFDL0I7QUFDQTtJQUNJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsK0JBQStCO0lBQy9CLGFBQWE7SUFDYixtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsK0JBQStCO0lBQy9CLCtCQUErQjtBQUNuQztBQUNBO0lBQ0ksWUFBWTtJQUNaLFVBQVU7SUFDVixpQkFBaUI7SUFDakIsa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLGFBQWE7SUFDYixn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O0lBQ0ksb0VBQW9FO0lBQ3BFLDBCQUEwQjtJQUMxQiwwQkFBMEI7SUFDMUIsMENBQTBDO0lBQzFDLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksVUFBVTtJQUNWLGVBQWU7SUFDZixlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEIiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1GaXJhK1NhbnMrQ29uZGVuc2VkOndnaHRANTAwJmRpc3BsYXk9c3dhcCcpO1xuKntcbiAgICBtYXJnaW46IDA7XG4gICAgcGFkZGluZzogMDtcbiAgICAvKiBib3JkZXI6IDFweCBzb2xpZCByZWQ7ICovXG4gICAgZm9udC1mYW1pbHk6ICdGaXJhIFNhbnMgQ29uZGVuc2VkJywgc2Fucy1zZXJpZjtcbn1cbkBrZXlmcmFtZXMgbWFrZUl0ZmFkZUluIHtcbiAgICAxMDAlIHtcbiAgICAgIGJhY2tncm91bmQtcG9zaXRpb246IGxlZnQ7XG4gICAgfVxuICB9XG5Aa2V5ZnJhbWVzIHJvdGF0ZSB7XG4gICAgMCUge1xuICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMCk7XG4gICAgfVxuICAgIDEwMCUge1xuICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICB9XG4gIH1cbkBrZXlmcmFtZXMgc3BpbiB7IFxuICAgIDEwMCUgeyBcbiAgICAgIHRyYW5zZm9ybTogcm90YXRlWigzNjBkZWcpO1xuICAgIH1cbiAgfVxuQGtleWZyYW1lcyBzaGFrZSB7XG4gICAgMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIDFweCkgcm90YXRlKDBkZWcpOyB9XG4gICAgMTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgLTJweCkgcm90YXRlKC0xZGVnKTsgfVxuICAgIDIwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDBweCkgcm90YXRlKDFkZWcpOyB9XG4gICAgMzAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoM3B4LCAycHgpIHJvdGF0ZSgwZGVnKTsgfVxuICAgIDQwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgLTFweCkgcm90YXRlKDFkZWcpOyB9XG4gICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgMnB4KSByb3RhdGUoLTFkZWcpOyB9XG4gICAgNjAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTNweCwgMXB4KSByb3RhdGUoMGRlZyk7IH1cbiAgICA3MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgzcHgsIDFweCkgcm90YXRlKC0xZGVnKTsgfVxuICAgIDgwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIC0xcHgpIHJvdGF0ZSgxZGVnKTsgfVxuICAgIDkwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgMnB4KSByb3RhdGUoMGRlZyk7IH1cbiAgICAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAtMnB4KSByb3RhdGUoLTFkZWcpOyB9XG4gIH1cbjpyb290IHtcbiAgICAtLW9yYW5nZTogI0UyN0Q2MDtcbiAgICAtLWN5YW46IHJnYigxMzEsIDIwNSwgMjAzKTsgXG4gICAgLS15ZWxsb3c6I0U4QTg3QztcbiAgICAtLXB1cnBsZTogI0MzOEQ5RTtcbiAgICAtLXNlYWJsdWU6IzQxQjNBMztcbiAgfVxuXG4vKiBIb21lIHN0eWxpbmcgKi9cbi5tYWluSG9tZURpdntcbiAgICB3aWR0aDoxMDAlO1xuICAgIGhlaWdodDogMTAwdmg7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciA0ZnI7XG4gICAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiAxZnIgN2ZyO1xufVxuLmhlYWRlckRpdntcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAxLzM7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHVycGxlKTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uc2lkZWJhckRpdntcbiAgICBncmlkLXJvdzogMi8zO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0teWVsbG93KTtcbiAgICBib3gtc2hhZG93OiA1cHggMCA1cHggLTJweCAjODg4O1xufVxuLm1haW5Mb2dve1xuICAgIGhlaWdodDogYXV0bztcbiAgICB3aWR0aDogMTUlO1xuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICAgIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbi5saXN0c0hlYWRlckRpdntcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIHBhZGRpbmc6IDFyZW07XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tc2VhYmx1ZSk7XG4gICAgYm94LXNoYWRvdzogMHB4IDJweCAxMHB4IC01cHggIzExMTsgXG59XG4ubGlzdHNIZWFkZXJ7XG4gICAgZm9udC1zaXplOiAyLjVyZW07XG4gICAgbGV0dGVyLXNwYWNpbmc6IDJweDtcbiAgICBjb2xvcjogd2hpdGU7XG59XG4uYnV0dG9uLWxpc3R7XG4gICAgbWFyZ2luOiAxcmVtO1xuICAgIGhlaWdodDogYXV0bztcbn1cbi5idXR0b25zSW5MaXN0e1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiAxNXB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXllbGxvdyk7XG4gICAgaGVpZ2h0OiAycmVtO1xuICAgIG1hcmdpbjogMSU7XG4gICAgZm9udC1zaXplOiAxcmVtO1xufVxuLmJ1dHRvbnNJbkxpc3Q6aG92ZXJ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHVycGxlKTtcbiAgICBmb250LXNpemU6IDEuNHJlbTtcbn1cbi5hZGRCdXR0b25EaXZ7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cbi5hZGRCdXR0b257XG4gICAgaGVpZ2h0OiAxNSU7XG4gICAgd2lkdGg6IDE1JTtcbn1cbi5hZGRCdXR0b246aG92ZXJ7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4ucHJvamVjdEFkZGVye1xuICAgIG1hcmdpbi10b3A6IDIlO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgaGVpZ2h0OiAxLjNyZW07XG59XG4uYWRkaW5nUHJvamVjdElucHV0e1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBtYXJnaW4tcmlnaHQ6IDUlO1xuICAgIGhlaWdodDogMTAwJTtcbn1cbi8qIC5hZGRpbmdQcm9qZWN0SW5wdXQ6aG92ZXJ7XG4gICAgYW5pbWF0aW9uOiBzaGFrZSAwLjVzOyBcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiBpbmZpbml0ZTsgXG59ICovXG4uYWRkaW5nUHJvamVjdElucHV0OmZvY3Vze1xuICAgIG91dGxpbmU6IG5vbmU7XG4gICAgYm9yZGVyOiAycHggc29saWQgdmFyKC0tc2VhYmx1ZSlcbn1cbi5hZGRpbmdQcm9qZWN0QnV0dG9ue1xuICAgYm9yZGVyOm5vbmU7XG4gICB3aWR0aDogNGVtO1xuICAgbWFyZ2luLWlubGluZTogYXV0bztcbn1cbi5hZGRpbmdQcm9qZWN0QnV0dG9uOmxhc3Qtb2YtdHlwZTpob3ZlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmY2OTYxO1xuICAgIGFuaW1hdGlvbjogc2hha2UgMC41czsgXG4gICAgYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogMTsgXG59XG4uYWRkaW5nUHJvamVjdEJ1dHRvbjpmaXJzdC1vZi10eXBlOmhvdmVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM3N0RENzc7XG4gICAgLyogYW5pbWF0aW9uOiBzaGFrZSAwLjVzOyBcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiAxOyAgKi9cbn1cbi8qIGhvbWUgc3R5bGluZyAqL1xuXG4vKiB0YXNrcyBzdHlsaW5nICovXG4udGFza3NEaXZ7XG4gICAgZ3JpZC1yb3c6IDIvMztcbiAgICBncmlkLWNvbHVtbjogMi8zO1xuICAgIG1hcmdpbi10b3A6IDElO1xufVxuLnRhc2tzTWVudUJhcntcbiAgICBoZWlnaHQ6IDNyZW07XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xufVxuLnJlbW92ZVByb2plY3RCdXR0b257XG4gICAgd2lkdGg6IDNyZW07XG4gICAgaGVpZ2h0OiBhdXRvO1xufVxuLnJlbW92ZVByb2plY3RCdXR0b246aG92ZXJ7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG4gICAgd2lkdGg6IDMuNXJlbTtcbiAgICBoZWlnaHQ6IGF1dG87XG59XG4ucmVtb3ZlUHJvamVjdEJ1dHRvbjphY3RpdmV7XG4gICAgYW5pbWF0aW9uOiBzaGFrZSAwLjVzO1xufVxuLmFkZFRhc2tCdXR0b257XG4gICAgd2lkdGg6IDkwJTtcbiAgICBoZWlnaHQ6IDgwJTtcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgYm9yZGVyLXJhZGl1czogMjVweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTBmNGYxO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLXNlYWJsdWUpO1xuICAgIGZvbnQtc2l6ZTogMXJlbTtcbiAgICBjb2xvcjogYmxhY2s7XG59XG4uYWRkVGFza0J1dHRvbjpob3ZlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTdkMWQ4O1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIHZhcigtLXB1cnBsZSk7XG59XG4udGFza3NBcmVhe1xuICAgIG1hcmdpbjogMyU7XG4gICAgaGVpZ2h0OiA4MCU7XG4gICAgLyogYm9yZGVyOiAycHggc29saWQgYmx1ZTsgKi9cbiAgICBvdmVyZmxvdzogc2Nyb2xsO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAgZ2FwOiAyJTtcbn1cbi5uZXdUYXNre1xuICAgIGJvcmRlci1yYWRpdXM6IDQwcHg7XG4gICAgaGVpZ2h0OiAxMCU7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgICBib3JkZXI6IDEwcHggc29saWQgYmxhY2s7XG59XG4ubmV3VGFza0NoZWNrSW1hZ2V7XG4gICAgaGVpZ2h0OiA1MCU7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgbWFyZ2luLWxlZnQ6IDElO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG4gICAgZ3JpZC1yb3c6IDIvMztcbn1cbi5uZXdUYXNrRm9ybXtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgaGVpZ2h0OiAzMCU7XG4gICAgd2lkdGg6IDMwJTtcbiAgICBtYXJnaW4tdG9wOiAxMSU7XG4gICAgbWFyZ2luLWxlZnQ6IDIyJTtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB2YXIoLS1wdXJwbGUpO1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2YwZTJlNztcbiAgICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gICAgei1pbmRleDogMjtcbn1cbi5mb3JtQ2xvc2VCdXR0b257XG4gICAgaGVpZ2h0OiBhdXRvO1xuICAgIHdpZHRoOiA1JTtcbiAgICBtYXJnaW4tbGVmdDogOTQlO1xuICAgIG1hcmdpbi10b3A6IDElO1xufVxuLmZvcm1DbG9zZUJ1dHRvbjpob3ZlcntcbiAgICBmaWx0ZXI6IGludmVydCgyNSUpIHNlcGlhKDg0JSkgc2F0dXJhdGUoNzQ5MiUpIGh1ZS1yb3RhdGUoMThkZWcpIGJyaWdodG5lc3MoMTAwJSkgY29udHJhc3QoMTA1JSk7XG59XG4uZGlzYWJsZS1kaXZ7XG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XG59XG4uZW5hYmxlLWRpdntcbiAgICBwb2ludGVyLWV2ZW50czogYWxsO1xufVxuLyogLnNob3dpbmctZm9ybXtcbiAgICBmaWx0ZXI6IGJsdXIoMnB4KTtcbn0gKi9cbi5mb3JtRWxlbWVudHN7XG4gICB3aWR0aDogNjUlO1xuICAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgIG1hcmdpbi1pbmxpbmU6IGF1dG87XG4gICBkaXNwbGF5OiBncmlkO1xuICAgY29sdW1uLWdhcDogMnJlbTtcbiAgIHJvdy1nYXA6IDFyZW07XG4gICBncmlkLXRlbXBsYXRlLXJvd3M6IDFmciAxZnI7XG4gICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnIgMWZyIDFmciAxZnI7XG4gICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLmZvcm1MYWJlbHtcbiAgICBmb250LXNpemU6IDEuMnJlbTtcbn1cbi5mb3JtSW5wdXR7XG4gICAgaGVpZ2h0OiAxcmVtO1xufVxuI2lkMXtcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG59XG4jaWQye1xuICAgIGdyaWQtcm93OiAyLzM7XG4gICAgZ3JpZC1jb2x1bW46IDEvMjtcbn1cbiNpZDN7XG4gICAgZ3JpZC1yb3c6IDMvNDtcbiAgICBncmlkLWNvbHVtbjogMS8yO1xufVxuI2lkNHtcbiAgICBncmlkLXJvdzogNC81O1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG59XG4jbmFtZXtcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4jZGF0ZXtcbiAgICBncmlkLXJvdzogMi8zO1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4jcHJpb3JpdHl7XG4gICAgZ3JpZC1yb3c6IDMvNDtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xufVxuI2Rlc2N7XG4gICAgZ3JpZC1yb3c6IDQvNjtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICByZXNpemU6IG5vbmU7XG59XG4uY3JlYXRlVGFza0J1dHRvbntcbiAgICBoZWlnaHQ6IDEuNXJlbTtcbiAgICB3aWR0aDogMjAlO1xuICAgIG1hcmdpbi1sZWZ0OiA0MCU7XG4gICAgbWFyZ2luLXRvcDogNSU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2E3ZGZkNztcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgYm9yZGVyLXJhZGl1czogMzBweDtcbn1cbi5jcmVhdGVUYXNrQnV0dG9uOmhvdmVye1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wdXJwbGUpO1xufVxuLm5ld1Rhc2tDaGVja0ltYWdlLnJvdGF0ZW1le1xuICAgIGFuaW1hdGlvbi1uYW1lOiByb3RhdGU7XG4gICAgYW5pbWF0aW9uLWRlbGF5OiAzMDBtcztcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG4gICAgZmlsdGVyOiBpbnZlcnQoNjclKSBzZXBpYSgxOCUpIHNhdHVyYXRlKDEyMjQlKSBodWUtcm90YXRlKDEyMmRlZykgYnJpZ2h0bmVzcyg4OCUpIGNvbnRyYXN0KDg2JSk7XG59XG4ucm90YXRlbWV7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4uc2hha2VtZXtcbiAgICBhbmltYXRpb24tbmFtZTogc2hha2U7XG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAwLjVzO1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHJlZDtcbn1cbi50YXNrTmFtZUxhYmVse1xuICAgIGZvbnQtc2l6ZTogMS41cmVtO1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgZ3JpZC1yb3c6IDEvMjtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xufVxuLnRhc2tEYXRlTGFiZWx7XG4gICAgbWFyZ2luLXJpZ2h0OiAzJTtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgZm9udC13ZWlnaHQ6IDEwMDtcbiAgICBvcGFjaXR5OiAwLjY7XG4gICAgei1pbmRleDogMTtcbiAgICBncmlkLXJvdzogMy80O1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4uaGFtYnVyZ2VyTWVudXtcbiAgICBmaWx0ZXI6IGludmVydCgxMyUpIHNlcGlhKDAlKSBzYXR1cmF0ZSgxODg4JSkgaHVlLXJvdGF0ZSgxNDJkZWcpIGJyaWdodG5lc3MoOTElKSBjb250cmFzdCg4MyUpO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBtYXJnaW4tbGVmdDogOTUlO1xufVxuLmhhbWJ1cmdlck1lbnU6aG92ZXJ7XG4gICAgZmlsdGVyOiBpbnZlcnQoNjElKSBzZXBpYSgzOCUpIHNhdHVyYXRlKDU5NSUpIGh1ZS1yb3RhdGUoMTIyZGVnKSBicmlnaHRuZXNzKDkzJSkgY29udHJhc3QoODglKTtcbn1cbi5taW51c0J1dHRvbkRpdntcbiAgICBncmlkLWNvbHVtbjogMy80O1xuICAgIGdyaWQtcm93OjIvMztcbn1cbi5uZXdUYXNrLmdyaWR7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLXJvd3M6IDFmciAxZnIgMWZyO1xuICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyIDZmciAwLjVmcjtcbn1cbi5taW51c0J1dHRvbntcbiAgICBmaWx0ZXI6IGludmVydCgxMyUpIHNlcGlhKDAlKSBzYXR1cmF0ZSgxODg4JSkgaHVlLXJvdGF0ZSgxNDJkZWcpIGJyaWdodG5lc3MoOTElKSBjb250cmFzdCg4MyUpO1xuICAgIGhlaWdodDogMi41cmVtO1xuICAgIHdpZHRoOiBhdXRvO1xuICAgIG1hcmdpbi1sZWZ0OiAyMCU7XG59XG4ubWludXNCdXR0b246aG92ZXJ7XG4gICAgZmlsdGVyOiBpbnZlcnQoMjglKSBzZXBpYSg3MCUpIHNhdHVyYXRlKDMwODclKSBodWUtcm90YXRlKDM1MmRlZykgYnJpZ2h0bmVzcygxMDYlKSBjb250cmFzdCgxMDElKTtcbiAgICBhbmltYXRpb24tbmFtZTogc3BpbjtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4uZGVzY1B7XG4gICAgZ3JpZC1jb2x1bW46IDIvMztcbiAgICBjb2xvcjogZ3JheTtcbiAgICBmb250LXdlaWdodDogMTAwO1xufVxuLm5ld1Rhc2tDaGVja0ltYWdlLmdyaWR7XG4gICAgaGVpZ2h0OiA0MCU7XG4gICAgd2lkdGg6IGF1dG87XG59XG4ubmV3VGFza0NoZWNrSW1hZ2UuZ3JpZDpob3ZlcntcbiAgICBoZWlnaHQ6IDUwJTtcbiAgICB3aWR0aDogYXV0bztcbn1cbi5uZXdUYXNrLml2ZWJlZW5jaGVja2Vke1xuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgd2hpdGVzbW9rZSA1MCUsIHRyYW5zcGFyZW50IDApO1xuICAgIGJhY2tncm91bmQtc2l6ZTogMjAwJSAxMDAlO1xuICAgIGJhY2tncm91bmQtcG9zaXRpb246IHJpZ2h0O1xuICAgIGFuaW1hdGlvbjogbWFrZUl0ZmFkZUluIDAuNXMgMC41cyBmb3J3YXJkcztcbiAgICBib3JkZXItc3R5bGU6ICBub25lO1xufVxuLmRhc2hib2FyZFB7XG4gICAgbWFyZ2luOiAxJTtcbiAgICBtYXJnaW4tbGVmdDogMiU7XG4gICAgZm9udC1zaXplOiAycmVtO1xuICAgIGZvbnQtd2VpZ2h0OiAxMDA7XG4gICAgb3BhY2l0eTogMC43O1xufSJdLCJzb3VyY2VSb290IjoiIn0= */</style></head>
+<body>
+  
+<div class="mainHomeDiv"><div class="headerDiv"><img class="mainLogo" src="http://localhost:8080/e4b2b7319b66350348a0.png"><img class="hamburgerMenu" src="http://localhost:8080/4fd3b62c3a29b9b30a0e.png"></div><div class="sidebarDiv"><div class="listsHeaderDiv"><p class="listsHeader">Lists</p></div><div class="button-list" id="buttonList"><button class="buttonsInList" id="0">All</button><button class="buttonsInList" id="1">grocery</button><button class="buttonsInList" id="2">oughoiug</button></div><div class="addButtonDiv"><img class="addButton" src="http://localhost:8080/0a2511f5d6d10f7226cc.png"></div><button class="refreshtasks">reset tasks</button><button class="refreshprojects">reset proj</button></div><div class="tasksDiv"><p class="dashboardP">All Dashboard</p><div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div><div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div></div></div></body>
+<div class="mainHomeDiv"><div class="headerDiv"><img class="mainLogo" src="http://localhost:8080/e4b2b7319b66350348a0.png"><img class="hamburgerMenu" src="http://localhost:8080/4fd3b62c3a29b9b30a0e.png"></div><div class="sidebarDiv"><div class="listsHeaderDiv"><p class="listsHeader">Lists</p></div><div class="button-list" id="buttonList"><button class="buttonsInList" id="0">All</button><button class="buttonsInList" id="1">grocery</button><button class="buttonsInList" id="2">oughoiug</button></div><div class="addButtonDiv"><img class="addButton" src="http://localhost:8080/0a2511f5d6d10f7226cc.png"></div><button class="refreshtasks">reset tasks</button><button class="refreshprojects">reset proj</button></div><div class="tasksDiv"><p class="dashboardP">All Dashboard</p><div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div><div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div></div></div>
+<div class="headerDiv"><img class="mainLogo" src="http://localhost:8080/e4b2b7319b66350348a0.png"><img class="hamburgerMenu" src="http://localhost:8080/4fd3b62c3a29b9b30a0e.png"></div>
+<div class="sidebarDiv"><div class="listsHeaderDiv"><p class="listsHeader">Lists</p></div><div class="button-list" id="buttonList"><button class="buttonsInList" id="0">All</button><button class="buttonsInList" id="1">grocery</button><button class="buttonsInList" id="2">oughoiug</button></div><div class="addButtonDiv"><img class="addButton" src="http://localhost:8080/0a2511f5d6d10f7226cc.png"></div><button class="refreshtasks">reset tasks</button><button class="refreshprojects">reset proj</button></div>
+<div class="tasksDiv"><p class="dashboardP">All Dashboard</p><div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div><div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div></div>
+<p class="dashboardP">All Dashboard</p>
+<div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div>
+<div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div>
+<div class="tasksDiv"><p class="dashboardP">All Dashboard</p><div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div><div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div></div>
+<div class="mainHomeDiv"><div class="headerDiv"><img class="mainLogo" src="http://localhost:8080/e4b2b7319b66350348a0.png"><img class="hamburgerMenu" src="http://localhost:8080/4fd3b62c3a29b9b30a0e.png"></div><div class="sidebarDiv"><div class="listsHeaderDiv"><p class="listsHeader">Lists</p></div><div class="button-list" id="buttonList"><button class="buttonsInList" id="0">All</button><button class="buttonsInList" id="1">grocery</button><button class="buttonsInList" id="2">oughoiug</button></div><div class="addButtonDiv"><img class="addButton" src="http://localhost:8080/0a2511f5d6d10f7226cc.png"></div><button class="refreshtasks">reset tasks</button><button class="refreshprojects">reset proj</button></div><div class="tasksDiv"><p class="dashboardP">All Dashboard</p><div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div><div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div></div></div>
+<body>
+  
+<div class="mainHomeDiv"><div class="headerDiv"><img class="mainLogo" src="http://localhost:8080/e4b2b7319b66350348a0.png"><img class="hamburgerMenu" src="http://localhost:8080/4fd3b62c3a29b9b30a0e.png"></div><div class="sidebarDiv"><div class="listsHeaderDiv"><p class="listsHeader">Lists</p></div><div class="button-list" id="buttonList"><button class="buttonsInList" id="0">All</button><button class="buttonsInList" id="1">grocery</button><button class="buttonsInList" id="2">oughoiug</button></div><div class="addButtonDiv"><img class="addButton" src="http://localhost:8080/0a2511f5d6d10f7226cc.png"></div><button class="refreshtasks">reset tasks</button><button class="refreshprojects">reset proj</button></div><div class="tasksDiv"><p class="dashboardP">All Dashboard</p><div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div><div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div></div></div></body>
+<html><head>
+    <meta charset="utf-8">
+    <title>My Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer="" src="runtime.bundle.js"></script><script defer="" src="index.bundle.js"></script><script defer="" src="home.bundle.js"></script><script defer="" src="dom.bundle.js"></script><style>@import url(https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@500&display=swap);</style><style>*{
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid red; */
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+@keyframes makeItfadeIn {
+    100% {
+      background-position: left;
+    }
+  }
+@keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+@keyframes spin { 
+    100% { 
+      transform: rotateZ(360deg);
+    }
+  }
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+:root {
+    --orange: #E27D60;
+    --cyan: rgb(131, 205, 203); 
+    --yellow:#E8A87C;
+    --purple: #C38D9E;
+    --seablue:#41B3A3;
+  }
+
+/* Home styling */
+.mainHomeDiv{
+    width:100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 7fr;
+}
+.headerDiv{
+    grid-row: 1/2;
+    grid-column: 1/3;
+    background-color: var(--purple);
+    display: flex;
+    align-items: center;
+}
+.sidebarDiv{
+    grid-row: 2/3;
+    grid-column: 1/2;
+    background-color: var(--yellow);
+    box-shadow: 5px 0 5px -2px #888;
+}
+.mainLogo{
+    height: auto;
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.listsHeaderDiv{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--seablue);
+    box-shadow: 0px 2px 10px -5px #111; 
+}
+.listsHeader{
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    color: white;
+}
+.button-list{
+    margin: 1rem;
+    height: auto;
+}
+.buttonsInList{
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--yellow);
+    height: 2rem;
+    margin: 1%;
+    font-size: 1rem;
+}
+.buttonsInList:hover{
+    background-color: var(--purple);
+    font-size: 1.4rem;
+}
+.addButtonDiv{
+    display: flex;
+    justify-content: center;
+}
+.addButton{
+    height: 15%;
+    width: 15%;
+}
+.addButton:hover{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+}
+.projectAdder{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    height: 1.3rem;
+}
+.addingProjectInput{
+    border: none;
+    margin-right: 5%;
+    height: 100%;
+}
+/* .addingProjectInput:hover{
+    animation: shake 0.5s; 
+    animation-iteration-count: infinite; 
+} */
+.addingProjectInput:focus{
+    outline: none;
+    border: 2px solid var(--seablue)
+}
+.addingProjectButton{
+   border:none;
+   width: 4em;
+   margin-inline: auto;
+}
+.addingProjectButton:last-of-type:hover{
+    background-color: #ff6961;
+    animation: shake 0.5s; 
+    animation-iteration-count: 1; 
+}
+.addingProjectButton:first-of-type:hover{
+    background-color: #77DD77;
+    /* animation: shake 0.5s; 
+    animation-iteration-count: 1;  */
+}
+/* home styling */
+
+/* tasks styling */
+.tasksDiv{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    margin-top: 1%;
+}
+.tasksMenuBar{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.removeProjectButton{
+    width: 3rem;
+    height: auto;
+}
+.removeProjectButton:hover{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+    width: 3.5rem;
+    height: auto;
+}
+.removeProjectButton:active{
+    animation: shake 0.5s;
+}
+.addTaskButton{
+    width: 90%;
+    height: 80%;
+    border: none;
+    border-radius: 25px;
+    background-color: #e0f4f1;
+    border: 1px solid var(--seablue);
+    font-size: 1rem;
+    color: black;
+}
+.addTaskButton:hover{
+    background-color: #e7d1d8;
+    border: 3px solid var(--purple);
+}
+.tasksArea{
+    margin: 3%;
+    height: 80%;
+    /* border: 2px solid blue; */
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+.newTask{
+    border-radius: 40px;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 10px solid black;
+}
+.newTaskCheckImage{
+    height: 50%;
+    width: auto;
+    margin-left: 1%;
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.newTaskForm{
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    margin-top: 11%;
+    margin-left: 22%;
+    border: 2px solid var(--purple);
+    border-radius: 15px;
+    background-color: #f0e2e7;
+    visibility: hidden;
+    z-index: 2;
+}
+.formCloseButton{
+    height: auto;
+    width: 5%;
+    margin-left: 94%;
+    margin-top: 1%;
+}
+.formCloseButton:hover{
+    filter: invert(25%) sepia(84%) saturate(7492%) hue-rotate(18deg) brightness(100%) contrast(105%);
+}
+.disable-div{
+    pointer-events: none;
+}
+.enable-div{
+    pointer-events: all;
+}
+/* .showing-form{
+    filter: blur(2px);
+} */
+.formElements{
+   width: 65%;
+   height: fit-content;
+   margin-inline: auto;
+   display: grid;
+   column-gap: 2rem;
+   row-gap: 1rem;
+   grid-template-rows: 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   align-items: center;
+}
+.formLabel{
+    font-size: 1.2rem;
+}
+.formInput{
+    height: 1rem;
+}
+#id1{
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+#id2{
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+#id3{
+    grid-row: 3/4;
+    grid-column: 1/2;
+}
+#id4{
+    grid-row: 4/5;
+    grid-column: 1/2;
+}
+#name{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+#date{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+#priority{
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+#desc{
+    grid-row: 4/6;
+    grid-column: 2/3;
+    height: 100%;
+    resize: none;
+}
+.createTaskButton{
+    height: 1.5rem;
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 5%;
+    background-color: #a7dfd7;
+    border: none;
+    border-radius: 30px;
+}
+.createTaskButton:hover{
+    color: white;
+    background-color: var(--purple);
+}
+.newTaskCheckImage.rotateme{
+    animation-name: rotate;
+    animation-delay: 300ms;
+    animation-duration: 0.5s;
+    filter: invert(67%) sepia(18%) saturate(1224%) hue-rotate(122deg) brightness(88%) contrast(86%);
+}
+.rotateme{
+    animation-name: rotate;
+    animation-duration: 0.5s;
+}
+.shakeme{
+    animation-name: shake;
+    animation-duration: 0.5s;
+    border: 2px solid red;
+}
+.taskNameLabel{
+    font-size: 1.5rem;
+    font-weight: 500;
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+.taskDateLabel{
+    margin-right: 3%;
+    color: black;
+    font-weight: 100;
+    opacity: 0.6;
+    z-index: 1;
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+.hamburgerMenu{
+    filter: invert(13%) sepia(0%) saturate(1888%) hue-rotate(142deg) brightness(91%) contrast(83%);
+    position: absolute;
+    margin-left: 95%;
+}
+.hamburgerMenu:hover{
+    filter: invert(61%) sepia(38%) saturate(595%) hue-rotate(122deg) brightness(93%) contrast(88%);
+}
+.minusButtonDiv{
+    grid-column: 3/4;
+    grid-row:2/3;
+}
+.newTask.grid{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 6fr 0.5fr;
+}
+.minusButton{
+    filter: invert(13%) sepia(0%) saturate(1888%) hue-rotate(142deg) brightness(91%) contrast(83%);
+    height: 2.5rem;
+    width: auto;
+    margin-left: 20%;
+}
+.minusButton:hover{
+    filter: invert(28%) sepia(70%) saturate(3087%) hue-rotate(352deg) brightness(106%) contrast(101%);
+    animation-name: spin;
+    animation-duration: 0.5s;
+}
+.descP{
+    grid-column: 2/3;
+    color: gray;
+    font-weight: 100;
+}
+.newTaskCheckImage.grid{
+    height: 40%;
+    width: auto;
+}
+.newTaskCheckImage.grid:hover{
+    height: 50%;
+    width: auto;
+}
+.newTask.ivebeenchecked{
+    background: linear-gradient(to right, whitesmoke 50%, transparent 0);
+    background-size: 200% 100%;
+    background-position: right;
+    animation: makeItfadeIn 0.5s 0.5s forwards;
+    border-style:  none;
+}
+.dashboardP{
+    margin: 1%;
+    margin-left: 2%;
+    font-size: 2rem;
+    font-weight: 100;
+    opacity: 0.7;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7SUFDSSxTQUFTO0lBQ1QsVUFBVTtJQUNWLDJCQUEyQjtJQUMzQiw4Q0FBOEM7QUFDbEQ7QUFDQTtJQUNJO01BQ0UseUJBQXlCO0lBQzNCO0VBQ0Y7QUFDRjtJQUNJO01BQ0Usb0JBQW9CO0lBQ3RCO0lBQ0E7TUFDRSx5QkFBeUI7SUFDM0I7RUFDRjtBQUNGO0lBQ0k7TUFDRSwwQkFBMEI7SUFDNUI7RUFDRjtBQUNGO0lBQ0ksS0FBSywyQ0FBMkMsRUFBRTtJQUNsRCxNQUFNLDhDQUE4QyxFQUFFO0lBQ3RELE1BQU0sNENBQTRDLEVBQUU7SUFDcEQsTUFBTSwyQ0FBMkMsRUFBRTtJQUNuRCxNQUFNLDRDQUE0QyxFQUFFO0lBQ3BELE1BQU0sNkNBQTZDLEVBQUU7SUFDckQsTUFBTSw0Q0FBNEMsRUFBRTtJQUNwRCxNQUFNLDRDQUE0QyxFQUFFO0lBQ3BELE1BQU0sNkNBQTZDLEVBQUU7SUFDckQsTUFBTSwyQ0FBMkMsRUFBRTtJQUNuRCxPQUFPLDZDQUE2QyxFQUFFO0VBQ3hEO0FBQ0Y7SUFDSSxpQkFBaUI7SUFDakIsMEJBQTBCO0lBQzFCLGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsaUJBQWlCO0VBQ25COztBQUVGLGlCQUFpQjtBQUNqQjtJQUNJLFVBQVU7SUFDVixhQUFhO0lBQ2IsYUFBYTtJQUNiLDhCQUE4QjtJQUM5QiwyQkFBMkI7QUFDL0I7QUFDQTtJQUNJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsK0JBQStCO0lBQy9CLGFBQWE7SUFDYixtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsK0JBQStCO0lBQy9CLCtCQUErQjtBQUNuQztBQUNBO0lBQ0ksWUFBWTtJQUNaLFVBQVU7SUFDVixpQkFBaUI7SUFDakIsa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLGFBQWE7SUFDYixn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O0lBQ0ksb0VBQW9FO0lBQ3BFLDBCQUEwQjtJQUMxQiwwQkFBMEI7SUFDMUIsMENBQTBDO0lBQzFDLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksVUFBVTtJQUNWLGVBQWU7SUFDZixlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEIiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1GaXJhK1NhbnMrQ29uZGVuc2VkOndnaHRANTAwJmRpc3BsYXk9c3dhcCcpO1xuKntcbiAgICBtYXJnaW46IDA7XG4gICAgcGFkZGluZzogMDtcbiAgICAvKiBib3JkZXI6IDFweCBzb2xpZCByZWQ7ICovXG4gICAgZm9udC1mYW1pbHk6ICdGaXJhIFNhbnMgQ29uZGVuc2VkJywgc2Fucy1zZXJpZjtcbn1cbkBrZXlmcmFtZXMgbWFrZUl0ZmFkZUluIHtcbiAgICAxMDAlIHtcbiAgICAgIGJhY2tncm91bmQtcG9zaXRpb246IGxlZnQ7XG4gICAgfVxuICB9XG5Aa2V5ZnJhbWVzIHJvdGF0ZSB7XG4gICAgMCUge1xuICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMCk7XG4gICAgfVxuICAgIDEwMCUge1xuICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICB9XG4gIH1cbkBrZXlmcmFtZXMgc3BpbiB7IFxuICAgIDEwMCUgeyBcbiAgICAgIHRyYW5zZm9ybTogcm90YXRlWigzNjBkZWcpO1xuICAgIH1cbiAgfVxuQGtleWZyYW1lcyBzaGFrZSB7XG4gICAgMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIDFweCkgcm90YXRlKDBkZWcpOyB9XG4gICAgMTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgLTJweCkgcm90YXRlKC0xZGVnKTsgfVxuICAgIDIwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDBweCkgcm90YXRlKDFkZWcpOyB9XG4gICAgMzAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoM3B4LCAycHgpIHJvdGF0ZSgwZGVnKTsgfVxuICAgIDQwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgLTFweCkgcm90YXRlKDFkZWcpOyB9XG4gICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgMnB4KSByb3RhdGUoLTFkZWcpOyB9XG4gICAgNjAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTNweCwgMXB4KSByb3RhdGUoMGRlZyk7IH1cbiAgICA3MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgzcHgsIDFweCkgcm90YXRlKC0xZGVnKTsgfVxuICAgIDgwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIC0xcHgpIHJvdGF0ZSgxZGVnKTsgfVxuICAgIDkwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgMnB4KSByb3RhdGUoMGRlZyk7IH1cbiAgICAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAtMnB4KSByb3RhdGUoLTFkZWcpOyB9XG4gIH1cbjpyb290IHtcbiAgICAtLW9yYW5nZTogI0UyN0Q2MDtcbiAgICAtLWN5YW46IHJnYigxMzEsIDIwNSwgMjAzKTsgXG4gICAgLS15ZWxsb3c6I0U4QTg3QztcbiAgICAtLXB1cnBsZTogI0MzOEQ5RTtcbiAgICAtLXNlYWJsdWU6IzQxQjNBMztcbiAgfVxuXG4vKiBIb21lIHN0eWxpbmcgKi9cbi5tYWluSG9tZURpdntcbiAgICB3aWR0aDoxMDAlO1xuICAgIGhlaWdodDogMTAwdmg7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciA0ZnI7XG4gICAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiAxZnIgN2ZyO1xufVxuLmhlYWRlckRpdntcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAxLzM7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHVycGxlKTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uc2lkZWJhckRpdntcbiAgICBncmlkLXJvdzogMi8zO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0teWVsbG93KTtcbiAgICBib3gtc2hhZG93OiA1cHggMCA1cHggLTJweCAjODg4O1xufVxuLm1haW5Mb2dve1xuICAgIGhlaWdodDogYXV0bztcbiAgICB3aWR0aDogMTUlO1xuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICAgIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbi5saXN0c0hlYWRlckRpdntcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIHBhZGRpbmc6IDFyZW07XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tc2VhYmx1ZSk7XG4gICAgYm94LXNoYWRvdzogMHB4IDJweCAxMHB4IC01cHggIzExMTsgXG59XG4ubGlzdHNIZWFkZXJ7XG4gICAgZm9udC1zaXplOiAyLjVyZW07XG4gICAgbGV0dGVyLXNwYWNpbmc6IDJweDtcbiAgICBjb2xvcjogd2hpdGU7XG59XG4uYnV0dG9uLWxpc3R7XG4gICAgbWFyZ2luOiAxcmVtO1xuICAgIGhlaWdodDogYXV0bztcbn1cbi5idXR0b25zSW5MaXN0e1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiAxNXB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXllbGxvdyk7XG4gICAgaGVpZ2h0OiAycmVtO1xuICAgIG1hcmdpbjogMSU7XG4gICAgZm9udC1zaXplOiAxcmVtO1xufVxuLmJ1dHRvbnNJbkxpc3Q6aG92ZXJ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcHVycGxlKTtcbiAgICBmb250LXNpemU6IDEuNHJlbTtcbn1cbi5hZGRCdXR0b25EaXZ7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cbi5hZGRCdXR0b257XG4gICAgaGVpZ2h0OiAxNSU7XG4gICAgd2lkdGg6IDE1JTtcbn1cbi5hZGRCdXR0b246aG92ZXJ7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4ucHJvamVjdEFkZGVye1xuICAgIG1hcmdpbi10b3A6IDIlO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgaGVpZ2h0OiAxLjNyZW07XG59XG4uYWRkaW5nUHJvamVjdElucHV0e1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBtYXJnaW4tcmlnaHQ6IDUlO1xuICAgIGhlaWdodDogMTAwJTtcbn1cbi8qIC5hZGRpbmdQcm9qZWN0SW5wdXQ6aG92ZXJ7XG4gICAgYW5pbWF0aW9uOiBzaGFrZSAwLjVzOyBcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiBpbmZpbml0ZTsgXG59ICovXG4uYWRkaW5nUHJvamVjdElucHV0OmZvY3Vze1xuICAgIG91dGxpbmU6IG5vbmU7XG4gICAgYm9yZGVyOiAycHggc29saWQgdmFyKC0tc2VhYmx1ZSlcbn1cbi5hZGRpbmdQcm9qZWN0QnV0dG9ue1xuICAgYm9yZGVyOm5vbmU7XG4gICB3aWR0aDogNGVtO1xuICAgbWFyZ2luLWlubGluZTogYXV0bztcbn1cbi5hZGRpbmdQcm9qZWN0QnV0dG9uOmxhc3Qtb2YtdHlwZTpob3ZlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmY2OTYxO1xuICAgIGFuaW1hdGlvbjogc2hha2UgMC41czsgXG4gICAgYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogMTsgXG59XG4uYWRkaW5nUHJvamVjdEJ1dHRvbjpmaXJzdC1vZi10eXBlOmhvdmVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM3N0RENzc7XG4gICAgLyogYW5pbWF0aW9uOiBzaGFrZSAwLjVzOyBcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiAxOyAgKi9cbn1cbi8qIGhvbWUgc3R5bGluZyAqL1xuXG4vKiB0YXNrcyBzdHlsaW5nICovXG4udGFza3NEaXZ7XG4gICAgZ3JpZC1yb3c6IDIvMztcbiAgICBncmlkLWNvbHVtbjogMi8zO1xuICAgIG1hcmdpbi10b3A6IDElO1xufVxuLnRhc2tzTWVudUJhcntcbiAgICBoZWlnaHQ6IDNyZW07XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xufVxuLnJlbW92ZVByb2plY3RCdXR0b257XG4gICAgd2lkdGg6IDNyZW07XG4gICAgaGVpZ2h0OiBhdXRvO1xufVxuLnJlbW92ZVByb2plY3RCdXR0b246aG92ZXJ7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG4gICAgd2lkdGg6IDMuNXJlbTtcbiAgICBoZWlnaHQ6IGF1dG87XG59XG4ucmVtb3ZlUHJvamVjdEJ1dHRvbjphY3RpdmV7XG4gICAgYW5pbWF0aW9uOiBzaGFrZSAwLjVzO1xufVxuLmFkZFRhc2tCdXR0b257XG4gICAgd2lkdGg6IDkwJTtcbiAgICBoZWlnaHQ6IDgwJTtcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgYm9yZGVyLXJhZGl1czogMjVweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTBmNGYxO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLXNlYWJsdWUpO1xuICAgIGZvbnQtc2l6ZTogMXJlbTtcbiAgICBjb2xvcjogYmxhY2s7XG59XG4uYWRkVGFza0J1dHRvbjpob3ZlcntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTdkMWQ4O1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIHZhcigtLXB1cnBsZSk7XG59XG4udGFza3NBcmVhe1xuICAgIG1hcmdpbjogMyU7XG4gICAgaGVpZ2h0OiA4MCU7XG4gICAgLyogYm9yZGVyOiAycHggc29saWQgYmx1ZTsgKi9cbiAgICBvdmVyZmxvdzogc2Nyb2xsO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAgZ2FwOiAyJTtcbn1cbi5uZXdUYXNre1xuICAgIGJvcmRlci1yYWRpdXM6IDQwcHg7XG4gICAgaGVpZ2h0OiAxMCU7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgICBib3JkZXI6IDEwcHggc29saWQgYmxhY2s7XG59XG4ubmV3VGFza0NoZWNrSW1hZ2V7XG4gICAgaGVpZ2h0OiA1MCU7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgbWFyZ2luLWxlZnQ6IDElO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG4gICAgZ3JpZC1yb3c6IDIvMztcbn1cbi5uZXdUYXNrRm9ybXtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgaGVpZ2h0OiAzMCU7XG4gICAgd2lkdGg6IDMwJTtcbiAgICBtYXJnaW4tdG9wOiAxMSU7XG4gICAgbWFyZ2luLWxlZnQ6IDIyJTtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB2YXIoLS1wdXJwbGUpO1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2YwZTJlNztcbiAgICB2aXNpYmlsaXR5OiBoaWRkZW47XG4gICAgei1pbmRleDogMjtcbn1cbi5mb3JtQ2xvc2VCdXR0b257XG4gICAgaGVpZ2h0OiBhdXRvO1xuICAgIHdpZHRoOiA1JTtcbiAgICBtYXJnaW4tbGVmdDogOTQlO1xuICAgIG1hcmdpbi10b3A6IDElO1xufVxuLmZvcm1DbG9zZUJ1dHRvbjpob3ZlcntcbiAgICBmaWx0ZXI6IGludmVydCgyNSUpIHNlcGlhKDg0JSkgc2F0dXJhdGUoNzQ5MiUpIGh1ZS1yb3RhdGUoMThkZWcpIGJyaWdodG5lc3MoMTAwJSkgY29udHJhc3QoMTA1JSk7XG59XG4uZGlzYWJsZS1kaXZ7XG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XG59XG4uZW5hYmxlLWRpdntcbiAgICBwb2ludGVyLWV2ZW50czogYWxsO1xufVxuLyogLnNob3dpbmctZm9ybXtcbiAgICBmaWx0ZXI6IGJsdXIoMnB4KTtcbn0gKi9cbi5mb3JtRWxlbWVudHN7XG4gICB3aWR0aDogNjUlO1xuICAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgIG1hcmdpbi1pbmxpbmU6IGF1dG87XG4gICBkaXNwbGF5OiBncmlkO1xuICAgY29sdW1uLWdhcDogMnJlbTtcbiAgIHJvdy1nYXA6IDFyZW07XG4gICBncmlkLXRlbXBsYXRlLXJvd3M6IDFmciAxZnI7XG4gICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnIgMWZyIDFmciAxZnI7XG4gICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLmZvcm1MYWJlbHtcbiAgICBmb250LXNpemU6IDEuMnJlbTtcbn1cbi5mb3JtSW5wdXR7XG4gICAgaGVpZ2h0OiAxcmVtO1xufVxuI2lkMXtcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG59XG4jaWQye1xuICAgIGdyaWQtcm93OiAyLzM7XG4gICAgZ3JpZC1jb2x1bW46IDEvMjtcbn1cbiNpZDN7XG4gICAgZ3JpZC1yb3c6IDMvNDtcbiAgICBncmlkLWNvbHVtbjogMS8yO1xufVxuI2lkNHtcbiAgICBncmlkLXJvdzogNC81O1xuICAgIGdyaWQtY29sdW1uOiAxLzI7XG59XG4jbmFtZXtcbiAgICBncmlkLXJvdzogMS8yO1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4jZGF0ZXtcbiAgICBncmlkLXJvdzogMi8zO1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4jcHJpb3JpdHl7XG4gICAgZ3JpZC1yb3c6IDMvNDtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xufVxuI2Rlc2N7XG4gICAgZ3JpZC1yb3c6IDQvNjtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICByZXNpemU6IG5vbmU7XG59XG4uY3JlYXRlVGFza0J1dHRvbntcbiAgICBoZWlnaHQ6IDEuNXJlbTtcbiAgICB3aWR0aDogMjAlO1xuICAgIG1hcmdpbi1sZWZ0OiA0MCU7XG4gICAgbWFyZ2luLXRvcDogNSU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2E3ZGZkNztcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgYm9yZGVyLXJhZGl1czogMzBweDtcbn1cbi5jcmVhdGVUYXNrQnV0dG9uOmhvdmVye1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1wdXJwbGUpO1xufVxuLm5ld1Rhc2tDaGVja0ltYWdlLnJvdGF0ZW1le1xuICAgIGFuaW1hdGlvbi1uYW1lOiByb3RhdGU7XG4gICAgYW5pbWF0aW9uLWRlbGF5OiAzMDBtcztcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG4gICAgZmlsdGVyOiBpbnZlcnQoNjclKSBzZXBpYSgxOCUpIHNhdHVyYXRlKDEyMjQlKSBodWUtcm90YXRlKDEyMmRlZykgYnJpZ2h0bmVzcyg4OCUpIGNvbnRyYXN0KDg2JSk7XG59XG4ucm90YXRlbWV7XG4gICAgYW5pbWF0aW9uLW5hbWU6IHJvdGF0ZTtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4uc2hha2VtZXtcbiAgICBhbmltYXRpb24tbmFtZTogc2hha2U7XG4gICAgYW5pbWF0aW9uLWR1cmF0aW9uOiAwLjVzO1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHJlZDtcbn1cbi50YXNrTmFtZUxhYmVse1xuICAgIGZvbnQtc2l6ZTogMS41cmVtO1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgZ3JpZC1yb3c6IDEvMjtcbiAgICBncmlkLWNvbHVtbjogMi8zO1xufVxuLnRhc2tEYXRlTGFiZWx7XG4gICAgbWFyZ2luLXJpZ2h0OiAzJTtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgZm9udC13ZWlnaHQ6IDEwMDtcbiAgICBvcGFjaXR5OiAwLjY7XG4gICAgei1pbmRleDogMTtcbiAgICBncmlkLXJvdzogMy80O1xuICAgIGdyaWQtY29sdW1uOiAyLzM7XG59XG4uaGFtYnVyZ2VyTWVudXtcbiAgICBmaWx0ZXI6IGludmVydCgxMyUpIHNlcGlhKDAlKSBzYXR1cmF0ZSgxODg4JSkgaHVlLXJvdGF0ZSgxNDJkZWcpIGJyaWdodG5lc3MoOTElKSBjb250cmFzdCg4MyUpO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBtYXJnaW4tbGVmdDogOTUlO1xufVxuLmhhbWJ1cmdlck1lbnU6aG92ZXJ7XG4gICAgZmlsdGVyOiBpbnZlcnQoNjElKSBzZXBpYSgzOCUpIHNhdHVyYXRlKDU5NSUpIGh1ZS1yb3RhdGUoMTIyZGVnKSBicmlnaHRuZXNzKDkzJSkgY29udHJhc3QoODglKTtcbn1cbi5taW51c0J1dHRvbkRpdntcbiAgICBncmlkLWNvbHVtbjogMy80O1xuICAgIGdyaWQtcm93OjIvMztcbn1cbi5uZXdUYXNrLmdyaWR7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLXJvd3M6IDFmciAxZnIgMWZyO1xuICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyIDZmciAwLjVmcjtcbn1cbi5taW51c0J1dHRvbntcbiAgICBmaWx0ZXI6IGludmVydCgxMyUpIHNlcGlhKDAlKSBzYXR1cmF0ZSgxODg4JSkgaHVlLXJvdGF0ZSgxNDJkZWcpIGJyaWdodG5lc3MoOTElKSBjb250cmFzdCg4MyUpO1xuICAgIGhlaWdodDogMi41cmVtO1xuICAgIHdpZHRoOiBhdXRvO1xuICAgIG1hcmdpbi1sZWZ0OiAyMCU7XG59XG4ubWludXNCdXR0b246aG92ZXJ7XG4gICAgZmlsdGVyOiBpbnZlcnQoMjglKSBzZXBpYSg3MCUpIHNhdHVyYXRlKDMwODclKSBodWUtcm90YXRlKDM1MmRlZykgYnJpZ2h0bmVzcygxMDYlKSBjb250cmFzdCgxMDElKTtcbiAgICBhbmltYXRpb24tbmFtZTogc3BpbjtcbiAgICBhbmltYXRpb24tZHVyYXRpb246IDAuNXM7XG59XG4uZGVzY1B7XG4gICAgZ3JpZC1jb2x1bW46IDIvMztcbiAgICBjb2xvcjogZ3JheTtcbiAgICBmb250LXdlaWdodDogMTAwO1xufVxuLm5ld1Rhc2tDaGVja0ltYWdlLmdyaWR7XG4gICAgaGVpZ2h0OiA0MCU7XG4gICAgd2lkdGg6IGF1dG87XG59XG4ubmV3VGFza0NoZWNrSW1hZ2UuZ3JpZDpob3ZlcntcbiAgICBoZWlnaHQ6IDUwJTtcbiAgICB3aWR0aDogYXV0bztcbn1cbi5uZXdUYXNrLml2ZWJlZW5jaGVja2Vke1xuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCwgd2hpdGVzbW9rZSA1MCUsIHRyYW5zcGFyZW50IDApO1xuICAgIGJhY2tncm91bmQtc2l6ZTogMjAwJSAxMDAlO1xuICAgIGJhY2tncm91bmQtcG9zaXRpb246IHJpZ2h0O1xuICAgIGFuaW1hdGlvbjogbWFrZUl0ZmFkZUluIDAuNXMgMC41cyBmb3J3YXJkcztcbiAgICBib3JkZXItc3R5bGU6ICBub25lO1xufVxuLmRhc2hib2FyZFB7XG4gICAgbWFyZ2luOiAxJTtcbiAgICBtYXJnaW4tbGVmdDogMiU7XG4gICAgZm9udC1zaXplOiAycmVtO1xuICAgIGZvbnQtd2VpZ2h0OiAxMDA7XG4gICAgb3BhY2l0eTogMC43O1xufSJdLCJzb3VyY2VSb290IjoiIn0= */</style></head>
+  <body>
+  
+<div class="mainHomeDiv"><div class="headerDiv"><img class="mainLogo" src="http://localhost:8080/e4b2b7319b66350348a0.png"><img class="hamburgerMenu" src="http://localhost:8080/4fd3b62c3a29b9b30a0e.png"></div><div class="sidebarDiv"><div class="listsHeaderDiv"><p class="listsHeader">Lists</p></div><div class="button-list" id="buttonList"><button class="buttonsInList" id="0">All</button><button class="buttonsInList" id="1">grocery</button><button class="buttonsInList" id="2">oughoiug</button></div><div class="addButtonDiv"><img class="addButton" src="http://localhost:8080/0a2511f5d6d10f7226cc.png"></div><button class="refreshtasks">reset tasks</button><button class="refreshprojects">reset proj</button></div><div class="tasksDiv"><p class="dashboardP">All Dashboard</p><div class="tasksMenuBar"><button class="addTaskButton">Add a task!</button><img class="removeProjectButton" src="http://localhost:8080/73a5e85864412349b270.png"></div><div class="tasksArea"><div class="newTaskForm"><img class="formCloseButton" src="http://localhost:8080/3771cafda882f2a8acf4.png"><div class="formElements"><label class="formLabel" id="id1">Task name:</label><input class="formInput" id="name" placeholder="Name your task"><label class="formLabel" id="id2">Finish by:</label><input class="formInput" id="date" type="date" placeholder="Add a date"><label class="formLabel" id="id3">Priority:</label><select class="formInput" id="priority"><option class="priority" value="high">High</option><option class="priority" value="medium">Medium</option><option class="priority" value="low">Low</option></select><label class="formLabel" id="id4">Description:</label><textarea class="formInput" id="desc" placeholder="Optional task description"></textarea></div><button class="createTaskButton" type="submit">Add!</button></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(255, 105, 97); background-color: rgb(255, 219, 217); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Cheese</p><p class="taskDateLabel">2022-09-23</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(196, 188, 0); background-color: rgb(255, 253, 205); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">vwcojveowv</p><p class="taskDateLabel">2022-09-07</p></div><div class="newTask" id="newTask" style="border: 1.5px solid rgb(119, 221, 119); background-color: rgb(222, 247, 222); height: 10%;"><img class="newTaskCheckImage" src="http://localhost:8080/c0d2d8ea4909bf549ee2.png"><p class="taskNameLabel">Water</p><p class="taskDateLabel">2022-09-28</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">Tomatoes</p><p class="taskDateLabel">2022-09-15</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">ouboib</p><p class="taskDateLabel">2022-09-05</p></div><div class="newTask ivebeenchecked" id="newTask" style="border: 1.5px solid gray; color: gray; height: 10%;"><img class="newTaskCheckImage rotateme" src="http://localhost:8080/3b9e16baaa601db11114.png"><p class="taskNameLabel">kinky</p><p class="taskDateLabel">2022-09-23</p></div></div></div></div></body></html>
